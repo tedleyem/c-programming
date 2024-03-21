@@ -1,0 +1,16 @@
+## Preferred Qualifications
+Strong understanding of Linux and UNIX fundamentals (standard libraries, services, networking, kernel/user-space interaction).
+Thorough understanding of network protocols (TCP/IP, UDP, QUIC, etc.).
+Developing and debugging on Linux (gdb, valgrind, etc).
+Experience with packet decoding and analysis tools such as tcpdump and Wireshark.
+Experience developing across the stack: OS/kernel, systems, containers, services, C, C++.
+Experience building data pipelines to ship and collect data from multiple sources.
+Familiarity with visualization tools and frameworks.
+
+
+## Nice to Have
+Familiarity with existing open source networking technologies - kernel (including eBPF, AF_XDP), Envoy, Istio, iwd, NetworkManager, etc.
+Familiarity with data path hardware acceleration protocols and interfaces, such as RDMA, NVMe.
+Familiarity with Kubernetes, Cloud-native Network Functions, and Container Network Interface plugins.
+Performance engineering and security experience.
+Passing familiarity with cross-GPU protocols (like GPUDirect or NVLink).
