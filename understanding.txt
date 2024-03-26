@@ -1,0 +1,39 @@
+---Variables  
+    int fahr, celsius;
+    int lower, upper, step;
+
+The type int means that the variables listed are integers; by contrast with float, which
+means floating point, i.e., numbers that may have a fractional part.
+
+---Data Types
+char - character - a single byte
+short - short integer
+long - long integer
+double - double-precision floating point
+arrays - 
+structures - 
+unions - 
+pointers -
+functions - 
+printf - a general purpose output formatting function defined in the ANSI standard, not a part of the C language
+
+scanf - function for reading inputs (like the 'read' command in bash) 
+
+
+
+-- When writing float points --
+6d    - print as decimal integer, at least 6 characters wide
+%f    - print as floating point
+%6f   - print as floating point, at least 6 characters wide
+%.2f  - print as floating point, 2 characters after decimal point
+%6.2f - print as floating point, at least 6 wide and 2 after decimal point]
+%o    - print  as octal
+%x    - print as hexadecimal
+%c    - print character
+%s    - print string
+%%    - print self 
+
+writing floating-point constants with explicit decimal points even when they have integral values
+emphasizes their floating-point nature for human readers. (ex 32.0 instead of 32)
+
+
