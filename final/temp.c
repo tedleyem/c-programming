@@ -18,6 +18,7 @@ main (){
             /* celsius = 5 * (fahr-32) / 9; --old */ 
             celsius = (5.0/9.0) * (fahr-32.0);
             printf("%3.0f %5.1f\n", fahr, celsius);
+            printf("fahr -- celsius\n");
             fahr = fahr + step;
             }
 }

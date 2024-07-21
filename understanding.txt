@@ -1,3 +1,6 @@
+-- run a program
+cc hello.c
+
 ---Variables  
     int fahr, celsius;
     int lower, upper, step;
