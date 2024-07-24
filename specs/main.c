@@ -1,9 +1,20 @@
+/*
+ system specs
+ ------------
+
+// A system report program to grab detailed information
+ on each piece of hardware and Advanced PC insights.
+ Inspired by apps like Speccy and Neofetch, the goal was to merge
+ features of these tools into a smaller application.
+ 2024 by Tedley Meralus
+*/
 #include <stdio.h>
-/* #include <stdlib.h> */
-/* #include <unistd.h> */
-/* #include <sys/utsname.h> */
-/* #include <string.h> */
-/* #include <inttypes.h> */
+// #include <termcolors.h>
+// #include <stdlib.h>
+// #include <unistd.h>
+// #include <sys/utsname.h>
+// #include <string.h>
+// #include <inttypes.h>
 /*
 #ifdef __FreeBSD__
 	#include <time.h>
@@ -12,147 +23,149 @@
 #endif
 */
 
-/* A system report program to grab detailed information
- on each piece of hardware and Advanced PC insights */
+#define BLUE(string) "\x1b[34m" string "\x1b[0m"
 
-/* Summary Page */
-/* OS INFO <-- Show name and color with ASCII logo art  */
 
-/* HOST INFO  */
+// Summary Page
+// OS INFO <-- Show name and color with ASCII logo art
+
+// HOST INFO
 char getHostInfo(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* KERNEL VERSION  */
+// KERNEL VERSION
 char getKernel(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* UPTIME  */
+// UPTIME
 char getUptime(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* PACKAGES  */
+// PACKAGES
 char getPackages(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* SHELL  */
+// SHELL
 char getShell(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* RESOLUTION  */
+// RESOLUTION
 char getResolution(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* DE  */
+// DE
 char getDeskEnv(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* WM  */
+// WM
 char getWindowEnv(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* TERMINAL  */
+// TERMINAL
 char getTerminal(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* CPU  */
+// CPU
 char getCPU(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* RAM/MEMORY */
+// RAM/MEMORY
 char getMemory(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* OR */
+// OR
 char getRam(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* <-- add flag for --more or --full to get advanced details > */
+// <-- add flag for --more or --full to get advanced details >
 
-/* MOTHERBOARD  */
+// MOTHERBOARD
 char getMotherboard(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* GRAPHICS  */
+// GRAPHICS
 char getGraphics(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* STORAGE  */
+// STORAGE
 char getStorage(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* OPTICAL DRIVE  */
+// OPTICAL DRIVE
 char getOptical(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* AUDIO  */
+// AUDIO
 char getAudio(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* PERIPHERALS  */
+// PERIPHERALS
 char getPeripherals(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* NETWORK  */
+// NETWORK
 char getNetwork(){
-	printf("hello, world \n");
+	return printf("hello, world \n");
 }
-/* --c save to clipboard  */
-/* --s save as text,pdf, or rtx  */
+// --c save to clipboard
+// --s save as text,pdf, or rtx
 
-/* help links:
- * https://www.tutorialspoint.com/unix_system_calls/sysinfo.htm
- */
+// help links:
+// * https://www.tutorialspoint.com/unix_system_calls/sysinfo.htm
 
-/* <-- add flag for --more or --full to get advanced details > */
-/* --c save to clipboard  */
-/* --s save as text,pdf, or rtx  */
+
+// <-- add flag for --more or --full to get advanced details >
+// --c save to clipboard
+// --s save as text,pdf, or rtx
 
 int main(){
-	/* Summary Page */
-	printf("\033[1m\033[36m%s@\033[1m\033[37m%s\n", "@Hostname pc insights");
-	/* HOST INFO  */
-	printf("\033[1m\033[36m%s@\033[1m\033[37m%s\n", "USER");
-	/* OS INFO <-- Show name and color with ASCII logo art  */
-	printf("\033[1m\033[36mos\t\033[0;37m%s\n", "OS");
-	/* KERNEL VERSION  */
-	printf("\033[1m\033[36mkernel\t\033[0;37m%s\n", "Kernel");
-	/* GET UPTIME */
-	printf("\033[1m\033[36muptime\t\033[0;37m%s\n", "Uptime");
-	/* PACKAGES  */
-	printf("\033[1m\033[36mpackages\t\033[0;37m%s\n", "Packages");
-	/* SHELL  */
-	printf("\033[1m\033[36mshell\t\033[0;37m%s\n", "SHELL");
-	/* RESOLUTION  */
-	printf("\033[1m\033[36mresolution\t\033[0;37m%s\n", "RESOLUTION");
-	/* DE  */
-	printf("\033[1m\033[36mdeskenv\t\033[0;37m%s\n", "DESKENV");
-	/* WM  */
-	printf("\033[1m\033[36mwindowenv\t\033[0;37m%s\n", "WINDOWENV");
- 	/* TERMINAL  */
-	printf("\033[1m\033[36mtermshow\t\033[0;37m%s\n", "TERMSHOW");
-	 /* CPU  */
-	printf("\033[1m\033[36mcpu\t\033[0;37m%s\n", "CPU");
-	/* RAM/MEMORY */
-	printf("\033[1m\033[36mmemory\t\033[0;37m%s\033[0m\n", "MEMORY");
-	/* add logic to hide the bottom half of these print statements */
-	/* <-- add flag for --more or --full to get advanced details > */
-	/* MOTHERBOARD  */
-	printf("\033[1m\033[36mmotherboard\t\033[0;37m%s\033[0m\n", "MOTHERBOARD");
-	/* GRAPHICS  */
-	printf("\033[1m\033[36mgraphics\t\033[0;37m%s\033[0m\n", "GRAPHICS");
-	/* STORAGE  */
-	printf("\033[1m\033[36mstorage\t\033[0;37m%s\033[0m\n", "STORAGE");
-	/* OPTICAL DRIVE  */
-	printf("\033[1m\033[36moptical\t\033[0;37m%s\033[0m\n", "Optical");
-	/* AUDIO  */
-	printf("\033[1m\033[36maudio\t\033[0;37m%s\033[0m\n", "AUDIO");
-	/* PERIPHERALS  */
-	printf("\033[1m\033[36mperipherals\t\033[0;37m%s\033[0m\n", "PERIPHERALS");
-	/* NETWORK  */
-	printf("\033[1m\033[36mnetwork\t\033[0;37m%s\033[0m\n", "NETWORK");
-	/* --c save to clipboard  */
-	/* --s save as text,pdf, or rtx  */
-	printf("\nTip: --c save to clipboard | --f full pc details\n");
+	// Summary Page
+	printf("PC Insights");
+	printf("\n----------\n");
+	// HOST INFO
+	printf(BLUE("%s"), "user: \n");
+	// OS INFO <-- Show name and color with ASCII logo art
+	printf(BLUE("%s"),"os:  \n");
+	// KERNEL VERSION
+	printf(BLUE("%s"),"kernel:  \n");
+	// GET UPTIME
+	printf(BLUE("%s"),"uptime:  \n");
+	// PACKAGES
+	printf(BLUE("%s"),"packages:  \n");
+	// SHELL
+	printf(BLUE("%s"),"shell:  \n");
+	// RESOLUTION
+	printf(BLUE("%s"),"resolution: \n");
+	// DE
+	printf(BLUE("%s"),"deskenv: \n");
+	// WM
+	printf(BLUE("%s"),"windowenv: \n");
+ 	// TERMINAL
+	printf(BLUE("%s"),"termshow: \n");
+	 // CPU
+	printf(BLUE("%s"),"cpu: \n");
+	// RAM/MEMORY
+	printf(BLUE("%s"),"memory: \n");
+	// add logic to hide the bottom half of these print statements
+	// <-- add flag for --more or --full to get advanced details >
+	// MOTHERBOARD
+	printf(BLUE("%s"),"motherboard: \n");
+	// GRAPHICS
+	printf(BLUE("%s"),"graphics: \n");
+	// STORAGE
+	printf(BLUE("%s"),"storage: \n");
+	// OPTICAL DRIVE
+	printf(BLUE("%s"),"optical: \n");
+	// AUDIO
+	printf(BLUE("%s"),"audio: \n");
+	// PERIPHERALS
+	printf(BLUE("%s"),"peripherals: \n");
+	// NETWORK
+	printf(BLUE("%s"),"network: \n");
+	// --c save to clipboard
+	// --s save as text,pdf, or rtx
+	printf("\n-----------------------------------------------");
+	printf("\nTip: --c save to clipboard | --f full pc details\n\n");
 
 	return 0;
 }
