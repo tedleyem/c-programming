@@ -25,7 +25,7 @@ A repo to document my journey with learning C and reading [C Programming Languag
 | pflo	    | Print variable of type float (2 decimal places) |
 | pint	    | Print variable of type int |
 | pcha	    | Print variable of type char |
-| ppoint    | 	Print variable of type pointer |
+| ppoint    | Print variable of type pointer |
 | psiz	    | Print variable of type size_t |
 | cal	    | Allocate memory using calloc |
 
