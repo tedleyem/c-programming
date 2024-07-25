@@ -1,116 +1,126 @@
 /*
  system specs
  ------------
-
-// A system report program to grab detailed information
+ A system report program to grab detailed information
  on each piece of hardware and Advanced PC insights.
  Inspired by apps like Speccy and Neofetch, the goal was to merge
  features of these tools into a smaller application.
- 2024 by Tedley Meralus
+ Author:cc ma	 Tedley Meralus
 */
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h> // for getting hostname info
 #include "termcolors.h"
-// #include <stdlib.h>
-// #include <unistd.h>
-// #include <sys/utsname.h>
-// #include <string.h>
-// #include <inttypes.h>
+
 /*
-#ifdef __FreeBSD__
-	#include <time.h>
-#elif __linux__
-	#include <sys/sysinfo.h>
-#endif
+If an object that has automatic storage duration is not initialized explicitly, its value is indeterminate.
+If you do not initialize a variable, its value is unspecified.
 */
+int uname = 0;
+int uptime = 0;
+int whoami = 0;
+int hostname = 0;
+int checkmemory = 0;
+int cpu_info = 0;
+int logical_cores = 0;
+int physical_cores = 0;
 
-// #define BLUE(string) "\x1b[34m" string "\x1b[0m"
-
+#ifdef __APPLE__
+	// apple specific commands will go here
+#endif
+#ifdef __linux
+	int cpuFile = "/proc/cpuinfo";
+#endif
 
 // Summary Page
 // OS INFO <-- Show name and color with ASCII logo art
 
 // HOST INFO
-char getUserInfo(){
+char getUserInfo() {
+	// https://man7.org/linux/man-pages/man2/gethostname.2.html
 	return printf("user@system \n");
 }
 
 // HOST INFO
-char getHostInfo(){
-	return printf("hello, world \n");
+char getHostInfo() {
+	return printf("hostname");
 }
 // KERNEL VERSION
-char getKernel(){
-	return printf("hello, world \n");
+char getKernel() {
+	return printf("example");
 }
 // UPTIME
-char getUptime(){
-	return printf("hello, world \n");
+char getUptime() {
+	return printf("example");
 }
 // PACKAGES
-char getPackages(){
-	return printf("hello, world \n");
+char getPackages() {
+	return printf("example");
 }
 // SHELL
-char getShell(){
-	return printf("hello, world \n");
+char getShell() {
+	return printf("example");
 }
 // RESOLUTION
-char getResolution(){
-	return printf("hello, world \n");
+char getResolution() {
+	return printf("example");
 }
 // DE
-char getDeskEnv(){
-	return printf("hello, world \n");
+char getDeskEnv() {
+	return printf("example");
 }
 // WM
-char getWindowEnv(){
-	return printf("hello, world \n");
+char getWindowEnv() {
+	return printf("example");
 }
 // TERMINAL
-char getTerminal(){
-	return printf("hello, world \n");
+char getTerminal() {
+	return printf("example");
 }
 // CPU
-char getCPU(){
-	return printf("hello, world \n");
+char getCPU() {
+	int cpu_info = system("sysctl -n machdep.cpu.brand_string");
+    int logical_cores = system("sysctl -n hw.logicalcpu_max");
+    int physical_cores = system("sysctl -n hw.physicalcpu_max");
+	return printf("example");
 }
 // RAM/MEMORY
-char getMemory(){
-	return printf("hello, world \n");
+char getMemory() {
+	return printf("example");
 }
 // OR
-char getRam(){
-	return printf("hello, world \n");
+char getRam() {
+	return printf("example");
 }
 // <-- add flag for --more or --full to get advanced details >
 
 // MOTHERBOARD
-char getMotherboard(){
-	return printf("hello, world \n");
+char getMotherboard() {
+	return printf("example");
 }
 // GRAPHICS
-char getGraphics(){
-	return printf("hello, world \n");
+char getGraphics() {
+	return printf("example");
 }
 // STORAGE
-char getStorage(){
-	return printf("hello, world \n");
+char getStorage() {
+	return printf("example");
 }
 // OPTICAL DRIVE
-char getOptical(){
-	return printf("hello, world \n");
+char getOptical() {
+	return printf("example");
 }
 // AUDIO
-char getAudio(){
-	x = printf("hello, world \n");
+char getAudio() {
+	return printf("example");
 }
 // PERIPHERALS
-char getPeripherals(){
-	return printf("hello, world \n");
+char getPeripherals() {
+	return printf("example");
 }
 // NETWORK
-char getNetwork(){
-	return printf("hello, world \n");
+char getNetwork() {
+	return printf("example");
 }
 // --c save to clipboard
 // --s save as text,pdf, or rtx
@@ -123,13 +133,13 @@ char getNetwork(){
 // --c save to clipboard
 // --s save as text,pdf, or rtx
 
-int main(){
+int main() {
 	// Summary Page
 	printf("PC Insights \n" RESET);
 	printf("%s", BLUE"user@hostname \n" RESET);
 	printf("-----------\n" RESET);
 	// HOST INFO
-	printf("%s", BLUE"Host \n" RESET);
+	printf("%s", BLUE"Host: \n" RESET);
 	// OS INFO <-- Show name and color with ASCII logo art
 	printf("%s", BLUE"OS:  \n" RESET);
 	// KERNEL VERSION
@@ -170,8 +180,6 @@ int main(){
 	printf("%s", BLUE"Optical: \n" RESET);
 	// AUDIO
 	printf("%s", BLUE"Audio: \n" RESET);
-	getAudio;
-
 	// --c save to clipboard
 	// --s save as text,pdf, or rtx
 	printf("\n-----------------------------------------------");
