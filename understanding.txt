@@ -1,3 +1,6 @@
+C standard library
+https://en.wikipedia.org/wiki/C_standard_library#:~:text=The%20C%20standard%20library%20provides,several%20other%20operating%20system%20services.
+
 -- run a program
 cc hello.c
 
@@ -6,7 +9,7 @@ A #define line defines a symbolic name or symbolic constant to be a particular s
 #define name replacement list
 
 
----Variables  
+---Variables
     int fahr, celsius;
     int lower, upper, step;
 
@@ -18,14 +21,14 @@ char - character - a single byte
 short - short integer
 long - long integer
 double - double-precision floating point
-arrays - 
-structures - 
-unions - 
+arrays -
+structures -
+unions -
 pointers -
-functions - 
+functions -
 printf - a general purpose output formatting function defined in the ANSI standard, not a part of the C language
 
-scanf - function for reading inputs (like the 'read' command in bash) 
+scanf - function for reading inputs (like the 'read' command in bash)
 
 
 
@@ -39,7 +42,7 @@ scanf - function for reading inputs (like the 'read' command in bash)
 %x    - print as hexadecimal
 %c    - print character
 %s    - print string
-%%    - print self 
+%%    - print self
 
 writing floating-point constants with explicit decimal points even when they have integral values
 emphasizes their floating-point nature for human readers. (ex 32.0 instead of 32)
@@ -52,4 +55,16 @@ putcharprints a character each time its called.
 c = getchar();
 putchar(c);
 
--- File Copying
+
+-- IFDEF (#ifdef)
+the #ifdef directive allows for conditional compilation.
+The preprocessor determines if the provided macro exists before
+including the subsequent code in the compilation process.
+
+-- stdlib
+The C stdlib library system() function is used to execute an operating system command
+#include <stdlib.h>
+
+-- system commands from stdlib
+The syntax for the system function in the C Language is:
+$ int system(const char *string);
