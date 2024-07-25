@@ -1,6 +1,11 @@
 -- run a program
 cc hello.c
 
+-- Define
+A #define line defines a symbolic name or symbolic constant to be a particular string of characters:
+#define name replacement list
+
+
 ---Variables  
     int fahr, celsius;
     int lower, upper, step;
@@ -40,3 +45,11 @@ writing floating-point constants with explicit decimal points even when they hav
 emphasizes their floating-point nature for human readers. (ex 32.0 instead of 32)
 
 
+--Input and Output
+getchar reads the next input characterfrom a text stream and returns tat as its value.
+putcharprints a character each time its called.
+
+c = getchar();
+putchar(c);
+
+-- File Copying

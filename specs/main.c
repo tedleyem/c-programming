@@ -9,7 +9,7 @@
  2024 by Tedley Meralus
 */
 #include <stdio.h>
-// #include <termcolors.h>
+#include "termcolors.h"
 // #include <stdlib.h>
 // #include <unistd.h>
 // #include <sys/utsname.h>
@@ -23,11 +23,16 @@
 #endif
 */
 
-#define BLUE(string) "\x1b[34m" string "\x1b[0m"
+// #define BLUE(string) "\x1b[34m" string "\x1b[0m"
 
 
 // Summary Page
 // OS INFO <-- Show name and color with ASCII logo art
+
+// HOST INFO
+char getUserInfo(){
+	return printf("user@system \n");
+}
 
 // HOST INFO
 char getHostInfo(){
@@ -97,7 +102,7 @@ char getOptical(){
 }
 // AUDIO
 char getAudio(){
-	return printf("hello, world \n");
+	x = printf("hello, world \n");
 }
 // PERIPHERALS
 char getPeripherals(){
@@ -120,52 +125,57 @@ char getNetwork(){
 
 int main(){
 	// Summary Page
-	printf("PC Insights");
-	printf("\n----------\n");
+	printf("PC Insights \n" RESET);
+	printf("%s", BLUE"user@hostname \n" RESET);
+	printf("-----------\n" RESET);
 	// HOST INFO
-	printf(BLUE("%s"), "user: \n");
+	printf("%s", BLUE"Host \n" RESET);
 	// OS INFO <-- Show name and color with ASCII logo art
-	printf(BLUE("%s"),"os:  \n");
+	printf("%s", BLUE"OS:  \n" RESET);
 	// KERNEL VERSION
-	printf(BLUE("%s"),"kernel:  \n");
+	printf("%s", BLUE"Kernel:  \n" RESET);
 	// GET UPTIME
-	printf(BLUE("%s"),"uptime:  \n");
+	printf("%s", BLUE"Uptime:  \n" RESET);
 	// PACKAGES
-	printf(BLUE("%s"),"packages:  \n");
+	printf("%s", BLUE"Packages:  \n" RESET);
 	// SHELL
-	printf(BLUE("%s"),"shell:  \n");
+	printf("%s", BLUE"Shell:  \n" RESET);
 	// RESOLUTION
-	printf(BLUE("%s"),"resolution: \n");
+	printf("%s", BLUE"Resolution: \n" RESET);
 	// DE
-	printf(BLUE("%s"),"deskenv: \n");
+	printf("%s", BLUE"DE: \n" RESET);
 	// WM
-	printf(BLUE("%s"),"windowenv: \n");
+	printf("%s", BLUE"WM: \n" RESET);
+ 	// THEME
+	printf("%s", BLUE"Theme: \n" RESET);
+ 	// ICONS
+	printf("%s", BLUE"Icons: \n" RESET);
  	// TERMINAL
-	printf(BLUE("%s"),"termshow: \n");
+	printf("%s", BLUE"Terminal: \n" RESET);
 	 // CPU
-	printf(BLUE("%s"),"cpu: \n");
+	printf("%s", BLUE"CPU: \n" RESET);
+	 // GPU
+	printf("%s", BLUE"GPU: \n" RESET);
 	// RAM/MEMORY
-	printf(BLUE("%s"),"memory: \n");
+	printf("%s", BLUE"Memory: \n" RESET);
 	// add logic to hide the bottom half of these print statements
 	// <-- add flag for --more or --full to get advanced details >
 	// MOTHERBOARD
-	printf(BLUE("%s"),"motherboard: \n");
+	printf("%s", BLUE"Motherboard: \n" RESET);
 	// GRAPHICS
-	printf(BLUE("%s"),"graphics: \n");
+	printf("%s", BLUE"Graphics: \n" RESET);
 	// STORAGE
-	printf(BLUE("%s"),"storage: \n");
+	printf("%s", BLUE"Storage: \n" RESET);
 	// OPTICAL DRIVE
-	printf(BLUE("%s"),"optical: \n");
+	printf("%s", BLUE"Optical: \n" RESET);
 	// AUDIO
-	printf(BLUE("%s"),"audio: \n");
-	// PERIPHERALS
-	printf(BLUE("%s"),"peripherals: \n");
-	// NETWORK
-	printf(BLUE("%s"),"network: \n");
+	printf("%s", BLUE"Audio: \n" RESET);
+	getAudio;
+
 	// --c save to clipboard
 	// --s save as text,pdf, or rtx
 	printf("\n-----------------------------------------------");
-	printf("\nTip: --c save to clipboard | --f full pc details\n\n");
+	printf("\nTip: --c save to clipboard --f full pc details\n\n");
 
 	return 0;
 }
