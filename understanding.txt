@@ -68,3 +68,9 @@ The C stdlib library system() function is used to execute an operating system co
 -- system commands from stdlib
 The syntax for the system function in the C Language is:
 $ int system(const char *string);
+
+-- VOID vs STATIC VOID 
+
+When should static functions be used?
+
+static functions are normally used to avoid name conflicts in bigger project. If you inspect Linux kernel source, example in drivers/net you would see many static void functions in there. Drivers are developed by different vendors and the usage of static functions ensure that they can name the functions the way they want without worrying of name conflicts with other non-related driver developers]
