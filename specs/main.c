@@ -16,14 +16,14 @@
 If an object that has automatic storage duration is not initialized explicitly, its value is indeterminate.
 If you do not initialize a variable, its value is unspecified.
 */
-int uname = 0;
-int uptime = 0;
-int whoami = 0;
-int hostname = 0;
-int checkmemory = 0;
-int cpu_info = 0;
-int logical_cores = 0;
-int physical_cores = 0;
+#define uname 0
+#define uptime 0
+#define whoami 0
+#define hostname 0
+#define checkmemory 0
+#define cpu_info 0
+#define logical_cores 0
+#define physical_cores 0
 
 #ifdef __APPLE__
 	// apple specific commands will go here
@@ -38,7 +38,8 @@ int physical_cores = 0;
 // HOST INFO
 char getUserInfo() {
 	// https://man7.org/linux/man-pages/man2/gethostname.2.html
-	return printf("user@system \n");
+	p =  printf("user@system from function\n");
+	return p;
 }
 
 // HOST INFO
@@ -139,7 +140,7 @@ int main() {
 	printf("%s", BLUE"user@hostname \n" RESET);
 	printf("-----------\n" RESET);
 	// HOST INFO
-	printf("%s", BLUE"Host: \n" RESET);
+	printf("%s", BLUE"Host: \n" RESET); getHostInfo;
 	// OS INFO <-- Show name and color with ASCII logo art
 	printf("%s", BLUE"OS:  \n" RESET);
 	// KERNEL VERSION
