@@ -5,186 +5,193 @@
  on each piece of hardware and Advanced PC insights.
  Inspired by apps like Speccy and Neofetch, the goal was to merge
  features of these tools into a smaller application.
- Author:cc ma	 Tedley Meralus
+ Author: Tedley Meralus
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h> // for getting hostname info
 #include "termcolors.h"
 
 /*
 If an object that has automatic storage duration is not initialized explicitly, its value is indeterminate.
 If you do not initialize a variable, its value is unspecified.
 */
-#define uname 0
-#define uptime 0
-#define whoami 0
-#define hostname 0
-#define checkmemory 0
-#define cpu_info 0
-#define logical_cores 0
-#define physical_cores 0
+// iint uname = 0;
+int uptime = 0;
+int whoami = 0;
+int hostname = 0;
+int checkmemory = 0;
+int cpu_info = 0;
+int logical_cores = 0;
+int physical_cores = 0;
 
 #ifdef __APPLE__
 	// apple specific commands will go here
-#endif
-#ifdef __linux
-	int cpuFile = "/proc/cpuinfo";
-#endif
-
-// Summary Page
-// OS INFO <-- Show name and color with ASCII logo art
-
-// HOST INFO
-char getUserInfo() {
-	// https://man7.org/linux/man-pages/man2/gethostname.2.html
-	p =  printf("user@system from function\n");
-	return p;
-}
-
-// HOST INFO
-char getHostInfo() {
-	return printf("hostname");
-}
-// KERNEL VERSION
-char getKernel() {
-	return printf("example");
-}
-// UPTIME
-char getUptime() {
-	return printf("example");
-}
-// PACKAGES
-char getPackages() {
-	return printf("example");
-}
-// SHELL
-char getShell() {
-	return printf("example");
-}
-// RESOLUTION
-char getResolution() {
-	return printf("example");
-}
-// DE
-char getDeskEnv() {
-	return printf("example");
-}
-// WM
-char getWindowEnv() {
-	return printf("example");
-}
-// TERMINAL
-char getTerminal() {
-	return printf("example");
-}
-// CPU
-char getCPU() {
 	int cpu_info = system("sysctl -n machdep.cpu.brand_string");
     int logical_cores = system("sysctl -n hw.logicalcpu_max");
     int physical_cores = system("sysctl -n hw.physicalcpu_max");
-	return printf("example");
+#endif
+#ifdef __linux
+//	int cpuFile = "/proc/cpuinfo";
+#endif
+
+// USER INFO
+void getUserInfo() {
+	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
+	//char getUser = system("whoami"); 
+	//char getHost = system("hostname");
+	char Infosplat = system("whoami \n");
+} 
+
+// OS INFO 
+void getOsInfo() {
+	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
+	char getUser = system("whoami \n");
+}
+// HOST INFO
+void getHostInfo() {
+	char getHost = system("uname -s \n");
+}
+// KERNEL VERSION
+void getKernel() {
+	char kernel = system("uname -r \n");
+}
+// UPTIME
+void getUptime() {
+	char Upstill = system("uptime -p \n");
+}
+// PACKAGES
+void getPackages() {
+	char Upstill = system("dpkg --list | wc -l \n");
+	
+}
+// SHELL
+void getShell() {
+	printf("Shell example \n");
+}
+// RESOLUTION
+void getResolution() {
+	printf("Resolution example \n");
+}
+// DE
+void getDeskEnv() {
+	printf("DE example \n");
+}
+// WM
+void getWindowEnv() {
+	printf("WE example \n");
+}
+// THEMES 
+void getTheme() {
+	printf("THEME example \n");
+}
+// ICONS
+void getIcons() {
+	printf("ICONS examples \n");
+}
+// TERMINAL
+void getTerminal() {
+	printf("Terminal example \n");
+}
+// CPU
+void getCPU() {
+	printf("CPU example \n");
 }
 // RAM/MEMORY
-char getMemory() {
-	return printf("example");
-}
-// OR
-char getRam() {
-	return printf("example");
+void getRam() {
+	printf("Memory example \n");
 }
 // <-- add flag for --more or --full to get advanced details >
 
 // MOTHERBOARD
-char getMotherboard() {
-	return printf("example");
+void getMotherboard() {
+	printf("Motherboard example \n");
 }
 // GRAPHICS
-char getGraphics() {
-	return printf("example");
+void getGraphics() {
+	printf("Graphics example \n");
 }
 // STORAGE
-char getStorage() {
-	return printf("example");
+void getStorage() {
+	printf("Storage example \n");
 }
 // OPTICAL DRIVE
-char getOptical() {
-	return printf("example");
+void getOptical() {
+	printf("Optical example \n");
 }
 // AUDIO
-char getAudio() {
-	return printf("example");
+void getAudio() {
+	printf("Audio example \n");
 }
 // PERIPHERALS
-char getPeripherals() {
-	return printf("example");
+void getPeripherals() {
+	printf("PERPH example \n");
 }
 // NETWORK
-char getNetwork() {
-	return printf("example");
+void getNetwork() {
+	printf("NIC Card example");
 }
+void moreSpecs() {
+	printf("NIC Card example");
+}
+
+// TODO: add flags for the following
 // --c save to clipboard
 // --s save as text,pdf, or rtx
+// --h for help 
+// --f full pc details
+ 
 
-// help links:
-// * https://www.tutorialspoint.com/unix_system_calls/sysinfo.htm
-
-
-// <-- add flag for --more or --full to get advanced details >
-// --c save to clipboard
-// --s save as text,pdf, or rtx
-
-int main() {
-	// Summary Page
-	printf("PC Insights \n" RESET);
-	printf("%s", BLUE"user@hostname \n" RESET);
+int main() { 
+	printf("PC Insights \n" RESET); 
 	printf("-----------\n" RESET);
-	// HOST INFO
-	printf("%s", BLUE"Host: \n" RESET); getHostInfo;
-	// OS INFO <-- Show name and color with ASCII logo art
-	printf("%s", BLUE"OS:  \n" RESET);
-	// KERNEL VERSION
-	printf("%s", BLUE"Kernel:  \n" RESET);
-	// GET UPTIME
-	printf("%s", BLUE"Uptime:  \n" RESET);
-	// PACKAGES
-	printf("%s", BLUE"Packages:  \n" RESET);
-	// SHELL
-	printf("%s", BLUE"Shell:  \n" RESET);
-	// RESOLUTION
-	printf("%s", BLUE"Resolution: \n" RESET);
-	// DE
-	printf("%s", BLUE"DE: \n" RESET);
-	// WM
-	printf("%s", BLUE"WM: \n" RESET);
- 	// THEME
-	printf("%s", BLUE"Theme: \n" RESET);
- 	// ICONS
-	printf("%s", BLUE"Icons: \n" RESET);
- 	// TERMINAL
-	printf("%s", BLUE"Terminal: \n" RESET);
-	 // CPU
-	printf("%s", BLUE"CPU: \n" RESET);
-	 // GPU
-	printf("%s", BLUE"GPU: \n" RESET);
-	// RAM/MEMORY
-	printf("%s", BLUE"Memory: \n" RESET);
+	printf("user@hostname\n" RESET);
+	//  INFO 
+	// getUserInfo();   
+	printf("-----------\n" RESET);
+	printf("OS: " RESET);
+	getOsInfo();
+	printf("Host: " RESET);
+	getHostInfo();
+	printf("Kernel: " RESET);
+	getKernel();
+	printf("Uptime: " RESET);
+	getUptime();
+	printf("Packages: " RESET);
+	getPackages();
+	printf("Shell: " RESET);
+	getShell();
+	printf("Resolution: " RESET);
+	getResolution();
+	printf("DE: " RESET);
+	getDeskEnv();
+	printf("WM: " RESET);
+	getWindowEnv();
+	printf("Theme: " RESET);
+	getTheme();
+	printf("Icons: " RESET);
+	getIcons();
+	printf("Terminal: " RESET);
+	getTerminal();
+	printf("CPU: " RESET);
+	getCPU();
+	printf("GPU: " RESET);
+	getGraphics();
+	printf("Memory: " RESET);
+	getRam();
 	// add logic to hide the bottom half of these print statements
 	// <-- add flag for --more or --full to get advanced details >
 	// MOTHERBOARD
-	printf("%s", BLUE"Motherboard: \n" RESET);
+	// printf("Motherboard: " RESET);
 	// GRAPHICS
-	printf("%s", BLUE"Graphics: \n" RESET);
+	// printf("Graphics: " RESET);
 	// STORAGE
-	printf("%s", BLUE"Storage: \n" RESET);
+	// printf("Storage: " RESET);
 	// OPTICAL DRIVE
-	printf("%s", BLUE"Optical: \n" RESET);
+	// printf("Optical: " RESET);
 	// AUDIO
-	printf("%s", BLUE"Audio: \n" RESET);
+	// printf("Audio: " RESET);
 	// --c save to clipboard
 	// --s save as text,pdf, or rtx
-	printf("\n-----------------------------------------------");
-	printf("\nTip: --c save to clipboard --f full pc details\n\n");
+	printf("\n-----------------------------------------------\n");
 
-	return 0;
 }
