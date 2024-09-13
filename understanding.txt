@@ -13,6 +13,24 @@ A #define line defines a symbolic name or symbolic constant to be a particular s
     int fahr, celsius;
     int lower, upper, step;
 
+Definitions: assign a variable a value
+ex: int x = 1;
+
+Declarations: assign a variable NO value
+ex: int x;
+
+YOU CANT REDEFINE A VARIABLE WITH THE SAME NAME
+if
+int x = 3;
+
+then you cant create a new
+int x = 4;
+
+HOWEVER, YOU CAN ASSIGN A VARIABLE WITHOUT A TYPE
+IN THE SAME PROGRAM
+ex: x = 4;
+
+
 The type int means that the variables listed are integers; by contrast with float, which
 means floating point, i.e., numbers that may have a fractional part.
 
@@ -27,12 +45,27 @@ unions -
 pointers -
 functions -
 printf - a general purpose output formatting function defined in the ANSI standard, not a part of the C language
-
 scanf - function for reading inputs (like the 'read' command in bash)
 
+NOTE: you cannot assign a large value to a small variable
+char c = 65576; DOES NOT WORK
+char values can be assigned between 0 and 255
 
 
--- When writing float points --
+---FLOAT POINTS
+writing floating-point constants with explicit decimal points even when they have integral values
+emphasizes their floating-point nature for human readers. (ex 32.0 instead of 32)
+STATIC TYPE VALUES
+ex: x = 0;
+
+FLOAT TYPE VALUES
+ex: x = 1.0
+
+float       | 4 bytes  | 6 decimal places
+double      | 8 bytes  | 15 decimal places
+long double | 10 bytes | 19 decimal places
+
+
 6d    - print as decimal integer, at least 6 characters wide
 %f    - print as floating point
 %6f   - print as floating point, at least 6 characters wide
@@ -44,9 +77,6 @@ scanf - function for reading inputs (like the 'read' command in bash)
 %s    - print string
 %%    - print self
 
-writing floating-point constants with explicit decimal points even when they have integral values
-emphasizes their floating-point nature for human readers. (ex 32.0 instead of 32)
-
 
 --Input and Output
 getchar reads the next input characterfrom a text stream and returns tat as its value.
@@ -54,6 +84,7 @@ putcharprints a character each time its called.
 
 c = getchar();
 putchar(c);
+
 
 
 -- IFDEF (#ifdef)
@@ -69,8 +100,47 @@ The C stdlib library system() function is used to execute an operating system co
 The syntax for the system function in the C Language is:
 $ int system(const char *string);
 
--- VOID vs STATIC VOID 
+-- VOID vs STATIC VOID
 
 When should static functions be used?
 
 static functions are normally used to avoid name conflicts in bigger project. If you inspect Linux kernel source, example in drivers/net you would see many static void functions in there. Drivers are developed by different vendors and the usage of static functions ensure that they can name the functions the way they want without worrying of name conflicts with other non-related driver developers]
+
+VOID UNDERSTANDING
+void is a VARIABLE TYPE which means a variable has no type.
+It is used in 3 different places.
+
+- Functions that don't return a value (they return void)
+- Functions that take no arguments (void arguments)
+- Pointers to void (set to be cast latter by programmer)
+
+Examples:
+void * ptr =
+void func ()
+
+# EMBEDDED SYSTEMS CORES
+Bitwise Arithmetic
+
+-- Simple Math --
+* Addition
+    * A = A + B
+    * A += B
+* Subtraction
+    * A = A - B
+    * A -= B
+* Division and Multiplication can be used as well
+
+-- Logic Operators --
+* And (Getting bits = returns 1 if both bits are set)
+    * A & B
+    * 1 & 1 = 1
+    * 1 & 0 = 0
+* Or (Setting bits: = returns 1 if either of the bits are set but not if neither are set)
+    * A | B
+    * 1 | 0 = 1
+* XOR (Flipping bits: only return 1 if either 1 is 1 but not both. must be exclusive)
+    * A ^ B
+    * 1 ^ 0 = 1
+    * 1 ^ 1 = 1
+
+=
