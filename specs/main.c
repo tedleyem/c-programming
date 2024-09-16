@@ -134,12 +134,12 @@ void moreSpecs() {
 	printf("NIC Card example");
 }
 
-// TODO: add flags for the following
-// --c save to clipboard
-// --s save as text,pdf, or rtx
-// --h for help 
-// --f full pc details
- 
+/*  TODO: add flags for the following
+ --c save to clipboard
+ --s save as text,pdf, or rtx
+ --h for help 
+ --f full pc details
+*/
 
 int main() { 
 	printf("PC Insights \n" RESET); 

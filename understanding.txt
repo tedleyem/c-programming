@@ -39,8 +39,8 @@ char - character - a single byte
 short - short integer
 long - long integer
 double - double-precision floating point
-arrays -
-structures -
+arrays - black of memory containing members of the same sizse
+structures - block of memory containing members of different types 
 unions -
 pointers -
 functions -
@@ -118,8 +118,7 @@ Examples:
 void * ptr =
 void func ()
 
-# EMBEDDED SYSTEMS CORES
-Bitwise Arithmetic
+--- BITWISE ARITHMEITC ---
 
 -- Simple Math --
 * Addition
@@ -143,4 +142,69 @@ Bitwise Arithmetic
     * 1 ^ 0 = 1
     * 1 ^ 1 = 1
 
-=
+--- STRUCTURE ---
+structures - block of memory containing members of different types 
+
+struct Person {
+    int age;
+    int height;
+}
+
+struct Person TED;
+    TED.age = 100;
+    TED.height = 200;
+
+-- ADVANCED EXAMPLE
+
+
+struct my_struct {
+    int arr[64]; // you can make an array inside a structure
+};
+
+struct my_struct mine[100]; 
+    mine1[].arr[4] = 10;
+
+/* this makes 100 my_struct varialbes that will have 
+64 itegers in them */
+
+--- CONDITIONAL STATEMENTS ---
+-- IF/THEN/ELSE ---
+
+Boolean Logic 
+
+&& |- called the AND operator. If both operands are non-zero, condition is TRUE 
+
+|| |- called OR operator. If any of the two operands is non-zero, the condition becomes TRUE.
+
+! |- called NOT operator. used to reverse logical state of its operand. If condition is true, then logical NOT operator will make it FALSE
+
+== |- checks if the two values are numerically the same. If yes, the expression is TRUE 
+
+!= |- checks if the two values are NOT numerically the same. If not, the expression is true. 
+
+--- SWITCH STATEMENT ---
+switch - a statement that compares a statement against a list of possibilities 
+and runs code based on the vlaue (becomes a jump table)
+
+Can be used if you have a huge chunk of code to pick through. 
+Probably a good use case for creating tests. 
+
+example: 
+
+swithc (expression)
+{
+    case value;
+        // code
+    case value2;
+        // more code 
+    case value3;
+        // a bit more code
+    default;
+        // code 
+        break;
+
+    return 0;
+}
+
+
+
