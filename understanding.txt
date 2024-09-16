@@ -4,12 +4,12 @@ https://en.wikipedia.org/wiki/C_standard_library#:~:text=The%20C%20standard%20li
 -- run a program
 cc hello.c
 
--- Define
+-- DEFINE ---
 A #define line defines a symbolic name or symbolic constant to be a particular string of characters:
 #define name replacement list
 
 
----Variables
+--- VARIABLES ---
     int fahr, celsius;
     int lower, upper, step;
 
@@ -34,7 +34,8 @@ ex: x = 4;
 The type int means that the variables listed are integers; by contrast with float, which
 means floating point, i.e., numbers that may have a fractional part.
 
----Data Types
+
+--- DATA TYPES ---
 char - character - a single byte
 short - short integer
 long - long integer
@@ -42,8 +43,8 @@ double - double-precision floating point
 arrays - black of memory containing members of the same sizse
 structures - block of memory containing members of different types 
 unions -
-pointers -
-functions -
+pointers - 
+functions - a group of statements that together perform a task. 
 printf - a general purpose output formatting function defined in the ANSI standard, not a part of the C language
 scanf - function for reading inputs (like the 'read' command in bash)
 
@@ -208,8 +209,12 @@ switch (expression)
 
 
 -- FUNCTIONS -- 
-functions should start with return types
+* functions should start with return types
 like void, or static 
+* functions reduce repeated code in a program (saves you space in embedded C where there may be limited space)
+* functions should do ONE things, sometimes TWO, NEVER THREE
+* funcions keep code readable and understandable
+
 
 --- REGARDING 'main(int argc, char *argv[])' ARGUMENTS 
 :examples can be found in final/loop.c
@@ -240,4 +245,15 @@ int main() {
 ```
 
 In the early versions of the C language, there was no int before main as this was implied. Today, this is considered to be an error.
+
+
+-- MORE FUNCTIONS ---
+functions can be found in a header file 
+if you plan on defining all the functions that are going to be used in a program. That way they can be called without throwing errors. 
+
+header.c
+
+void funcion_a(void);
+void function_b(void);
+
 
