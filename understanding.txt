@@ -191,7 +191,7 @@ Probably a good use case for creating tests.
 
 example: 
 
-swithc (expression)
+switch (expression)
 {
     case value;
         // code
@@ -207,4 +207,37 @@ swithc (expression)
 }
 
 
+-- FUNCTIONS -- 
+functions should start with return types
+like void, or static 
+
+--- REGARDING 'main(int argc, char *argv[])' ARGUMENTS 
+:examples can be found in final/loop.c
+
+The arguments argc and argv of main is used as a way to send arguments to a program, the possibly most familiar way is to use the good ol' terminal where a user could type cat file. Here the word cat is a program that takes a file and outputs it to standard output (stdout).
+
+The program receives the number of arguments in argc and the vector of arguments in argv, in the above the argument count would be two (The program name counts as the first argument) and the argument vector would contain [cat,file,null]. While the last element being a null-pointer.
+
+Commonly, you would write it like this:
+
+```
+int  // Specifies that type of variable the function returns.
+     // main() must return an integer
+main ( int argc, char **argv ) {
+     // code
+     return 0; // Indicates that everything went well.
+}
+```
+
+If your program does not require any arguments, it is equally valid to write a main-function in the following fashion:
+
+```
+int main() {
+  // code
+  return 0; // Zero indicates success, while any
+  // Non-Zero value indicates a failure/error
+}
+```
+
+In the early versions of the C language, there was no int before main as this was implied. Today, this is considered to be an error.
 
