@@ -264,5 +264,3 @@ struct Person *pME = &me;
 |              |__> add a "*" to address it as a pointer. the (p) is optional
 |
 |____> define type of pointer
-
-
