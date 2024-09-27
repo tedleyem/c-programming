@@ -26,9 +26,9 @@ int physical_cores = 0;
 
 #ifdef __APPLE__
 	// apple specific commands will go here
-	int cpu_info = system("sysctl -n machdep.cpu.brand_string");
-    int logical_cores = system("sysctl -n hw.logicalcpu_max");
-    int physical_cores = system("sysctl -n hw.physicalcpu_max");
+	// int cpu_info = system("sysctl -n machdep.cpu.brand_string");
+    // int logical_cores = system("sysctl -n hw.logicalcpu_max");
+    // int physical_cores = system("sysctl -n hw.physicalcpu_max");
 #endif
 #ifdef __linux
 //	int cpuFile = "/proc/cpuinfo";
@@ -193,5 +193,6 @@ int main() {
 	// --c save to clipboard
 	// --s save as text,pdf, or rtx
 	printf("\n-----------------------------------------------\n");
+	return 0;
 
 }
