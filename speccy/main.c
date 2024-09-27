@@ -193,6 +193,8 @@ int main() {
 	// --c save to clipboard
 	// --s save as text,pdf, or rtx
 	printf("\n-----------------------------------------------\n");
+	printf("Speccy is a system information tool written in C\n");
+	printf("Report bugs: https://github.com/tedleyem/speccy/issues\n");
 	return 0;
 
 }
