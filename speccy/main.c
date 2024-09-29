@@ -34,14 +34,19 @@ int physical_cores = 0;
 //	int cpuFile = "/proc/cpuinfo";
 #endif
 
+#define NORM "\x1B[37m"
+#define NORM2 "\033[0m"
+#define BOLD "\033[1m"
+#define BLINK "\033[5m"
+#define ITALIC "\033[3m"
+#define UNDERLINE "\033[4m"
+
 // USER INFO
 void getUserInfo() {
 	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
-	//char getUser = system("whoami"); 
-	//char getHost = system("hostname");
-	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
-	char getUser = system("hostname \n");
 	char Infosplat = system("whoami \n"); 
+	char getUser = system("hostname \n");
+	printf("%s%sDEBUG: %s%s%s \n", BOLD, UNDERLINE, Infosplat, "@", getUser);
 } 
 
 // OS INFO 
@@ -135,25 +140,8 @@ void getPeripherals() {
 void getNetwork() {
 	printf("NIC Card example");
 }
-void moreSpecs() {
-	printf("NIC Card example");
-}
 
-/*  TODO: add flags for the following
- --c save to clipboard
- --s save as text,pdf, or rtx
- --h for help 
- --f full pc details
-
-  printf("Speccy is a system information tool written in C\n");
-  printf("Report bugs: https://github.com/tedleyem/speccy/issues\n");
-*/
-
-int main() { 
-	printf("PC Specs \n");
-	printf("-----------\n");
-	getUserInfo();   
-	printf("-----------\n");
+void core_specs(){ 
 	getOsInfo();
 	getHostInfo();
 	getKernel();
@@ -169,22 +157,44 @@ int main() {
 	getCPU();
 	getGraphics();
 	getRam();
-	// add logic to hide the bottom half of these print statements
-	// <-- add flag for --more or --full to get advanced details >
-	// MOTHERBOARD
-	// printf("Motherboard: " );
-	// GRAPHICS
-	// printf("Graphics: " );
-	// STORAGE
-	// printf("Storage: " );
-	// OPTICAL DRIVE
-	// printf("Optical: " );
-	// AUDIO
-	// printf("Audio: " );
-	// --c save to clipboard
-	// --s save as text,pdf, or rtx
-	//printf("----------------------------------------------\n");
+}
+
+void more__specs() {
+	printf("MORE SYSTEM SPECS");
+	getMotherboard();
+	getGraphics();
+	getStorage();
+	getOptical();
+	getAudio();
+	getPeripherals();
+	getNetwork();
+}
+
+
+/*  TODO: add flags for the following
+ --c save to clipboard
+ --s save as text,pdf, or rtx
+ --h for help 
+ --f full pc details
+
+ // add logic to hide the bottom half of these print statements
+ // <-- add flag for --more or --full to get advanced details >
+
+  printf("Speccy is a system information tool written in C\n");
+  printf("Report bugs: https://github.com/tedleyem/speccy/issues\n");
+*/
+
+
+int main() { 
+	printf("PC Specs \n");
+	printf("-----------\n");
+	//getUserInfo();   
+	printf("-----------\n"); 
+	core_specs();
+
+	printf("----------------------------------------------\n");
 	printf("\n");
+	getUserInfo();   
 	return 0;
 
 }
