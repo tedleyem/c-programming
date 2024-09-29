@@ -80,8 +80,8 @@ long double | 10 bytes | 19 decimal places
 
 
 --Input and Output
-getchar reads the next input characterfrom a text stream and returns tat as its value.
-putcharprints a character each time its called.
+getchar: reads the next input characterfrom a text stream and returns that as its value.
+putchar: prints a character each time its called.
 
 c = getchar();
 putchar(c);
