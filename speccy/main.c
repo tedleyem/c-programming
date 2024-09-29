@@ -146,7 +146,8 @@ void getNetwork() {
 
 // TEST inline options
 void getTextInline() {
-	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
+	// test popen 
+	// https://man7.org/linux/man-pages/man3/popen.3.html
 	char Infosplat = system("whoami \n"); 
 	char getUser = system("hostname \n");
 	//printf("%s%sDEBUG: %s%s%s \n", BOLD, UNDERLINE, Infosplat, "@", getUser);
