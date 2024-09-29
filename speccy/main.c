@@ -39,66 +39,71 @@ void getUserInfo() {
 	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
 	//char getUser = system("whoami"); 
 	//char getHost = system("hostname");
-	char Infosplat = system("whoami \n");
+	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
+	char getUser = system("hostname \n");
+	char Infosplat = system("whoami \n"); 
 } 
 
 // OS INFO 
-void getOsInfo() {
-	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
-	char getUser = system("whoami \n");
+void getOsInfo() { 
+	printf("OS: \n");
 }
 // HOST INFO
 void getHostInfo() {
 	char getHost = system("uname -s \n");
+	printf("Host: \n", getHost);
 }
 // KERNEL VERSION
 void getKernel() {
-	char kernel = system("uname -r \n");
+	//char kernel = system("uname -r \n");
+	printf("Kernel: \n");
 }
 // UPTIME
 void getUptime() {
-	char Upstill = system("uptime -p \n");
+	//char Upstill = system("uptime -p \n");
+	printf("Uptime: \n");
 }
 // PACKAGES
 void getPackages() {
-	char Upstill = system("dpkg --list | wc -l \n");
-	
+	//char Upstill = system("dpkg --list | wc -l \n");
+	printf("Packages: \n");	
 }
 // SHELL
-void getShell() {
-	printf("Shell example \n");
+void getShell() { 
+	printf("Shell: \n");
 }
 // RESOLUTION
 void getResolution() {
-	printf("Resolution example \n");
+	//char pullRez = system("xdpyinfo | grep resolution");
+	printf("Resolution: \n");
 }
 // DE
-void getDeskEnv() {
-	printf("DE example \n");
+void getDeskEnv() { 
+	printf("DE: \n");
 }
 // WM
-void getWindowEnv() {
-	printf("WE example \n");
+void getWindowEnv() { 
+	printf("WM: \n");
 }
 // THEMES 
 void getTheme() {
-	printf("THEME example \n");
+	printf("Theme: \n");
 }
 // ICONS
-void getIcons() {
-	printf("ICONS examples \n");
+void getIcons() { 
+	printf("Icons: \n");
 }
 // TERMINAL
-void getTerminal() {
-	printf("Terminal example \n");
+void getTerminal() { 
+	printf("Terminal: \n");
 }
 // CPU
 void getCPU() {
-	printf("CPU example \n");
+	printf("CPU: \n");
 }
 // RAM/MEMORY
-void getRam() {
-	printf("Memory example \n");
+void getRam() { 
+	printf("Memory: \n");
 }
 // <-- add flag for --more or --full to get advanced details >
 
@@ -108,7 +113,7 @@ void getMotherboard() {
 }
 // GRAPHICS
 void getGraphics() {
-	printf("Graphics example \n");
+	printf("GPU: \n");
 }
 // STORAGE
 void getStorage() {
@@ -139,62 +144,47 @@ void moreSpecs() {
  --s save as text,pdf, or rtx
  --h for help 
  --f full pc details
+
+  printf("Speccy is a system information tool written in C\n");
+  printf("Report bugs: https://github.com/tedleyem/speccy/issues\n");
 */
 
 int main() { 
-	printf("PC Insights \n" RESET); 
-	printf("-----------\n" RESET);
-	printf("user@hostname\n" RESET);
-	//  INFO 
-	// getUserInfo();   
-	printf("-----------\n" RESET);
-	printf("OS: " RESET);
+	printf("PC Specs \n");
+	printf("-----------\n");
+	getUserInfo();   
+	printf("-----------\n");
 	getOsInfo();
-	printf("Host: " RESET);
 	getHostInfo();
-	printf("Kernel: " RESET);
 	getKernel();
-	printf("Uptime: " RESET);
 	getUptime();
-	printf("Packages: " RESET);
 	getPackages();
-	printf("Shell: " RESET);
 	getShell();
-	printf("Resolution: " RESET);
 	getResolution();
-	printf("DE: " RESET);
 	getDeskEnv();
-	printf("WM: " RESET);
 	getWindowEnv();
-	printf("Theme: " RESET);
 	getTheme();
-	printf("Icons: " RESET);
 	getIcons();
-	printf("Terminal: " RESET);
 	getTerminal();
-	printf("CPU: " RESET);
 	getCPU();
-	printf("GPU: " RESET);
 	getGraphics();
-	printf("Memory: " RESET);
 	getRam();
 	// add logic to hide the bottom half of these print statements
 	// <-- add flag for --more or --full to get advanced details >
 	// MOTHERBOARD
-	// printf("Motherboard: " RESET);
+	// printf("Motherboard: " );
 	// GRAPHICS
-	// printf("Graphics: " RESET);
+	// printf("Graphics: " );
 	// STORAGE
-	// printf("Storage: " RESET);
+	// printf("Storage: " );
 	// OPTICAL DRIVE
-	// printf("Optical: " RESET);
+	// printf("Optical: " );
 	// AUDIO
-	// printf("Audio: " RESET);
+	// printf("Audio: " );
 	// --c save to clipboard
 	// --s save as text,pdf, or rtx
-	printf("\n-----------------------------------------------\n");
-	printf("Speccy is a system information tool written in C\n");
-	printf("Report bugs: https://github.com/tedleyem/speccy/issues\n");
+	//printf("----------------------------------------------\n");
+	printf("\n");
 	return 0;
 
 }
