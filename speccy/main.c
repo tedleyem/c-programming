@@ -90,6 +90,10 @@ void getDeskEnv() {
 void getWindowEnv() { 
 	printf("WM: \n");
 }
+// WM THEME
+void getWindowTheme() { 
+	printf("WM Theme: \n");
+}
 // THEMES 
 void getTheme() {
 	printf("Theme: \n");
@@ -138,7 +142,7 @@ void getPeripherals() {
 }
 // NETWORK
 void getNetwork() {
-	printf("NIC Card example");
+	printf("NIC Card  \n");
 }
 
 void core_specs(){ 
@@ -151,6 +155,7 @@ void core_specs(){
 	getResolution();
 	getDeskEnv();
 	getWindowEnv();
+	getWindowTheme();
 	getTheme();
 	getIcons();
 	getTerminal();
@@ -170,7 +175,6 @@ void more__specs() {
 	getNetwork();
 }
 
-
 /*  TODO: add flags for the following
  --c save to clipboard
  --s save as text,pdf, or rtx
@@ -185,7 +189,7 @@ void more__specs() {
 */
 
 
-int main() { 
+int main(int argc, char *argv[]) { 
 	printf("PC Specs \n");
 	printf("-----------\n");
 	//getUserInfo();   
