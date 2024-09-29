@@ -9,8 +9,17 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include "termcolors.h"
-
+#include "termcolors.h"  
+#ifdef __FreeBSD__
+	#include <time.h>
+#elif __linux__
+	#include <sys/sysinfo.h>
+#elif __APPLE__
+	// apple specific commands will go here
+	// int cpu_info = system("sysctl -n machdep.cpu.brand_string");
+    // int logical_cores = system("sysctl -n hw.logicalcpu_max");
+    // int physical_cores = system("sysctl -n hw.physicalcpu_max");
+#endif
 /*
 If an object that has automatic storage duration is not initialized explicitly, its value is indeterminate.
 If you do not initialize a variable, its value is unspecified.
@@ -24,16 +33,6 @@ int cpu_info = 0;
 int logical_cores = 0;
 int physical_cores = 0;
 
-#ifdef __APPLE__
-	// apple specific commands will go here
-	// int cpu_info = system("sysctl -n machdep.cpu.brand_string");
-    // int logical_cores = system("sysctl -n hw.logicalcpu_max");
-    // int physical_cores = system("sysctl -n hw.physicalcpu_max");
-#endif
-#ifdef __linux
-//	int cpuFile = "/proc/cpuinfo";
-#endif
-
 #define NORM "\x1B[37m"
 #define NORM2 "\033[0m"
 #define BOLD "\033[1m"
@@ -44,9 +43,9 @@ int physical_cores = 0;
 // USER INFO
 void getUserInfo() {
 	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
-	char Infosplat = system("whoami \n"); 
-	char getUser = system("hostname \n");
-	printf("%s%sDEBUG: %s%s%s \n", BOLD, UNDERLINE, Infosplat, "@", getUser);
+	// char Infosplat = system("whoami \n"); 
+	// char getUser = system("hostname \n"); 
+	printf("user@hostname \n");
 } 
 
 // OS INFO 
@@ -145,6 +144,15 @@ void getNetwork() {
 	printf("NIC Card  \n");
 }
 
+// TEST inline options
+void getTextInline() {
+	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
+	char Infosplat = system("whoami \n"); 
+	char getUser = system("hostname \n");
+	//printf("%s%sDEBUG: %s%s%s \n", BOLD, UNDERLINE, Infosplat, "@", getUser);
+	printf("%sOS: \n", BOLD, "BIGhostname");
+} 
+
 void core_specs(){ 
 	getOsInfo();
 	getHostInfo();
@@ -188,7 +196,6 @@ void more__specs() {
   printf("Report bugs: https://github.com/tedleyem/speccy/issues\n");
 */
 
-
 int main(int argc, char *argv[]) { 
 	printf("PC Specs \n");
 	printf("-----------\n");
@@ -198,7 +205,6 @@ int main(int argc, char *argv[]) {
 
 	printf("----------------------------------------------\n");
 	printf("\n");
-	getUserInfo();   
+	getTextInline();   
 	return 0;
-
 }
