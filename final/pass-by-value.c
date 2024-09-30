@@ -1,8 +1,6 @@
 #include <stdio.h>
 // you can pass variables into functions 
 
-int g;
-
 int function_two(int param)
 {
     param += 1;
@@ -11,7 +9,7 @@ int function_two(int param)
 
 int main (int argc, char **argv)
 {
-    int a, b;
+    int a;
 
     a = 10;
     a = function_two(a);
