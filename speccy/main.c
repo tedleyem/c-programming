@@ -114,7 +114,14 @@ void getRam() {
 	printf("Memory: \n");
 }
 // <-- add flag for --more or --full to get advanced details >
-
+// Serial Number
+void getSerialNumber() {
+	printf("Motherboard example \n");
+}
+// Model Number 
+void getModelNumber() {
+	printf("Motherboard example \n");
+}
 // MOTHERBOARD
 void getMotherboard() {
 	printf("Motherboard example \n");
@@ -175,6 +182,8 @@ void core_specs(){
 
 void more__specs() {
 	printf("MORE SYSTEM SPECS");
+	getSerialNumber();
+	getModelNumber();
 	getMotherboard();
 	getGraphics();
 	getStorage();
