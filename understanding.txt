@@ -297,3 +297,53 @@ When making a pointer you must do the following:
 * adding a p  to the front of your pointer 
     like *pME is good practice for pointers 
 
+# Embedded Systems 
+-- systems that have the software and hardware to perform
+electronic tasks. All in one systems that don't require
+any external components to run. --microwaves 
+
+# Microcontroller 
+small and self contained systems. All hardware and software 
+are contained. 
+
+-- cheap 
+-- task focused 
+-- self contained memory 
+-- resource constrained 
+
+# Microprocessor 
+processors to handle more functionality.
+
+-- expensive 
+-- general tasks 
+-- depends on exeternal components (motherboard, ram, storage)
+-- resource abundant 
+
+-- Linux vs Embedded --
+Linux OS's come with glibc and libc 
+which are libraries with a boat load of 
+resources and api's. 
+
+Embedded land does not have any of those libraries 
+or functions. Those have to be built by YOU. 
+
+What do embedded developers need to know about 
+the chips they are working with. 
+
+* The constraints 
+  -- amount of RAM, ROM, FLASH 
+  -- clock speed 
+* The memory map (datasheet)
+  -- where does boot start, whwere does the bootloader live
+  -- where is RAM? 
+  -- Where are peripherals? 
+  -- periperals (serial, analog digital converters, etc)
+    * UART,SPI,I2C, TIMERS,etc 
+* Toolchain 
+    * Is there a cross compiler for an AVR or SPI toolchain? 
+    * Is the development community active? 
+
+The Arduino boards are essentially sheilds
+that have two chips on them. One is used to flash the other. 
+
+
