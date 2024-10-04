@@ -264,3 +264,36 @@ struct Person *pME = &me;
 |              |__> add a "*" to address it as a pointer. the (p) is optional
 |
 |____> define type of pointer
+
+-- PASS BY VALUE
+passing a variable or structure through a function 
+to do something and return the changed variable. 
+
+
+-- PASS BY REFERENCE 
+You cannot pass a structure by value, instead 
+you would have to pass a reference. 
+
+EXAMPLE: 
+
+```
+Address | Value 
+
+0x1000  | 0x00024 #age      <--\
+                                struct Person me;
+0x1004  | 0x00040 #height   <--/
+0x1004  | 0x00008           <-- struct Person* #pointer 
+```
+If you have a list of addresses and wanted to 
+make a pointer to those addresses you can make a 
+pointer to the address to call it back and forth. 
+
+
+Defining pointers 
+    struct Person *pME = &me;
+
+When making a pointer you must do the following: 
+* define the type of the pointer
+* adding a p  to the front of your pointer 
+    like *pME is good practice for pointers 
+
