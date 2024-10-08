@@ -44,8 +44,10 @@ int physical_cores = 0;
 // USER INFO
 void getUserInfo() {
 	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
-	// char Infosplat = system("whoami \n"); 
-	// char getUser = system("hostname \n"); 
+	// test popen 
+	// https://man7.org/linux/man-pages/man3/popen.3.html
+	char Infosplat = system("whoami \n"); 
+	char getUser = system("hostname \n");
 	printf("user@hostname \n");
 } 
 
@@ -152,16 +154,6 @@ void getNetwork() {
 	printf("NIC Card: %s \n", test);
 }
 
-// TEST inline options
-void getTextInline() {
-	// test popen 
-	// https://man7.org/linux/man-pages/man3/popen.3.html
-	char Infosplat = system("whoami \n"); 
-	char getUser = system("hostname \n");
-
-	printf("OS: %s \n", getUser);
-} 
-
 void core_specs(){ 
 	getOsInfo();
 	getHostInfo();
@@ -181,7 +173,7 @@ void core_specs(){
 	getRam();
 }
 
-void more__specs() {
+void more_specs(){
 	printf("MORE SYSTEM SPECS");
 	getSerialNumber();
 	getModelNumber();
@@ -208,12 +200,11 @@ void more__specs() {
 */
 
 int main(int argc, char *argv[]) { 
-	printf("PC Specs\n");
-	printf("--------\n");
+	printf("Speccy \n");
+	printf("-------\n");
 	core_specs();
-
-	printf("----------------------------------------------\n");
-	printf("\n");
-	getTextInline();   
+	//printf("%s  %s", core_specs(), more_specs() );
+	// creates empty space on return
+	printf("\n\n");
 	return 0;
 }
