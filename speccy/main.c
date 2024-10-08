@@ -33,6 +33,7 @@ int cpu_info = 0;
 int logical_cores = 0;
 int physical_cores = 0;
 
+#define test "placeholder"
 #define NORM "\x1B[37m"
 #define NORM2 "\033[0m"
 #define BOLD "\033[1m"
@@ -50,105 +51,105 @@ void getUserInfo() {
 
 // OS INFO 
 void getOsInfo() { 
-	printf("OS: \n");
+	printf("OS: %s \n", test);
 }
 // HOST INFO
 void getHostInfo() {
-	char getHost = system("uname -s \n");
-	printf("Host: \n", getHost);
+	//char getHost = system("uname -s \n");
+	printf("Host: %s \n", test);
 }
 // KERNEL VERSION
 void getKernel() {
 	//char kernel = system("uname -r \n");
-	printf("Kernel: \n");
+	printf("Kernel: %s \n", test);
 }
 // UPTIME
 void getUptime() {
 	//char Upstill = system("uptime -p \n");
-	printf("Uptime: \n");
+	printf("Uptime: %s \n", test);
 }
 // PACKAGES
 void getPackages() {
 	//char Upstill = system("dpkg --list | wc -l \n");
-	printf("Packages: \n");	
+	printf("Packages: %s \n", test);	
 }
 // SHELL
 void getShell() { 
-	printf("Shell: \n");
+	printf("Shell: %s \n", test);
 }
 // RESOLUTION
 void getResolution() {
 	//char pullRez = system("xdpyinfo | grep resolution");
-	printf("Resolution: \n");
+	printf("Resolution: %s \n", test);
 }
 // DE
 void getDeskEnv() { 
-	printf("DE: \n");
+	printf("DE: %s \n", test);
 }
 // WM
 void getWindowEnv() { 
-	printf("WM: \n");
+	printf("WM: %s \n", test);
 }
 // WM THEME
 void getWindowTheme() { 
-	printf("WM Theme: \n");
+	printf("WM Theme: %s \n", test);
 }
 // THEMES 
 void getTheme() {
-	printf("Theme: \n");
+	printf("Theme: %s \n", test);
 }
 // ICONS
 void getIcons() { 
-	printf("Icons: \n");
+	printf("Icons: %s \n", test);
 }
 // TERMINAL
 void getTerminal() { 
-	printf("Terminal: \n");
+	printf("Terminal: %s \n", test);
 }
 // CPU
 void getCPU() {
-	printf("CPU: \n");
+	printf("CPU: %s \n", test);
 }
 // RAM/MEMORY
 void getRam() { 
-	printf("Memory: \n");
+	printf("Memory: %s \n", test);
 }
 // <-- add flag for --more or --full to get advanced details >
 // Serial Number
 void getSerialNumber() {
-	printf("Motherboard example \n");
+	printf("Motherboard: %s \n", test);
 }
 // Model Number 
 void getModelNumber() {
-	printf("Motherboard example \n");
+	printf("Motherboard: %s \n", test);
 }
 // MOTHERBOARD
 void getMotherboard() {
-	printf("Motherboard example \n");
+	printf("Motherboard: %s \n", test);
 }
 // GRAPHICS
 void getGraphics() {
-	printf("GPU: \n");
+	printf("GPU: %s \n", test);
 }
 // STORAGE
 void getStorage() {
-	printf("Storage example \n");
+	printf("Storage %s \n", test);
 }
 // OPTICAL DRIVE
 void getOptical() {
-	printf("Optical example \n");
+	printf("Optical: %s \n", test);
 }
 // AUDIO
 void getAudio() {
-	printf("Audio example \n");
+	printf("Audio: %s \n", test);
 }
 // PERIPHERALS
 void getPeripherals() {
-	printf("PERPH example \n");
+	printf("Perpiherals: %s \n", test);
 }
 // NETWORK
 void getNetwork() {
-	printf("NIC Card  \n");
+	printf("NIC Card: %s \n", test);
 }
 
 // TEST inline options
@@ -157,8 +158,8 @@ void getTextInline() {
 	// https://man7.org/linux/man-pages/man3/popen.3.html
 	char Infosplat = system("whoami \n"); 
 	char getUser = system("hostname \n");
-	//printf("%s%sDEBUG: %s%s%s \n", BOLD, UNDERLINE, Infosplat, "@", getUser);
-	printf("%sOS: \n", BOLD, "BIGhostname");
+
+	printf("OS: %s \n", getUser);
 } 
 
 void core_specs(){ 
@@ -207,10 +208,8 @@ void more__specs() {
 */
 
 int main(int argc, char *argv[]) { 
-	printf("PC Specs \n");
-	printf("-----------\n");
-	//getUserInfo();   
-	printf("-----------\n"); 
+	printf("PC Specs\n");
+	printf("--------\n");
 	core_specs();
 
 	printf("----------------------------------------------\n");
