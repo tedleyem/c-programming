@@ -105,7 +105,9 @@ $ int system(const char *string);
 
 When should static functions be used?
 
-static functions are normally used to avoid name conflicts in bigger project. If you inspect Linux kernel source, example in drivers/net you would see many static void functions in there. Drivers are developed by different vendors and the usage of static functions ensure that they can name the functions the way they want without worrying of name conflicts with other non-related driver developers]
+static functions are normally used to avoid name conflicts in bigger project. 
+If you inspect Linux kernel source, example in drivers/net you would see many static void functions in there. 
+Drivers are developed by different vendors and the usage of static functions ensure that they can name the functions the way they want without worrying of name conflicts with other non-related driver developers
 
 VOID UNDERSTANDING
 void is a VARIABLE TYPE which means a variable has no type.

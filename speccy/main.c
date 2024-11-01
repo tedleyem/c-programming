@@ -5,10 +5,11 @@
  on each piece of hardware and Advanced PC insights.
  Inspired by apps like Speccy and Neofetch, the goal was to merge
  features of these tools into a smaller application.
- Author: Tedley Meralus
+ Author: Tedley Meralus <tmeralus@protonmail.com>
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/utsname.h> //geting kernel and host name info
 #include "termcolors.h"  
 #ifdef __FreeBSD__
 	#include <time.h>
@@ -23,15 +24,7 @@
 /*
 If an object that has automatic storage duration is not initialized explicitly, its value is indeterminate.
 If you do not initialize a variable, its value is unspecified.
-*/
-// iint uname = 0;
-int uptime = 0;
-int whoami = 0;
-int hostname = 0;
-int checkmemory = 0;
-int cpu_info = 0;
-int logical_cores = 0;
-int physical_cores = 0;
+*/ 
 
 #define test "placeholder"
 #define NORM "\x1B[37m"
@@ -41,14 +34,14 @@ int physical_cores = 0;
 #define ITALIC "\033[3m"
 #define UNDERLINE "\033[4m"
 
+struct utsname kername; //set variable for system name structure 
+
 // USER INFO
 void getUserInfo() {
 	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
 	// test popen 
 	// https://man7.org/linux/man-pages/man3/popen.3.html
-	char Infosplat = system("whoami \n"); 
-	char getUser = system("hostname \n");
-	printf("user@hostname \n");
+	printf("%s@%s \n" , test, test);
 } 
 
 // OS INFO 
@@ -58,12 +51,15 @@ void getOsInfo() {
 // HOST INFO
 void getHostInfo() {
 	//char getHost = system("uname -s \n");
+	 FILE *fptr;
+	// Open a file in read mode
+	fptr = fopen("/etc/hostname", "r"); 
 	printf("Host: %s \n", test);
+	fclose(fptr);
 }
 // KERNEL VERSION
 void getKernel() {
-	//char kernel = system("uname -r \n");
-	printf("Kernel: %s \n", test);
+	printf("Kernel: %s\n", kername.release);
 }
 // UPTIME
 void getUptime() {
@@ -155,6 +151,7 @@ void getNetwork() {
 }
 
 void core_specs(){ 
+	getUserInfo();
 	getOsInfo();
 	getHostInfo();
 	getKernel();
@@ -205,6 +202,6 @@ int main(int argc, char *argv[]) {
 	core_specs();
 	//printf("%s  %s", core_specs(), more_specs() );
 	// creates empty space on return
-	printf("\n\n");
+	printf("\n");
 	return 0;
 }
