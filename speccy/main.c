@@ -26,6 +26,8 @@ If an object that has automatic storage duration is not initialized explicitly, 
 If you do not initialize a variable, its value is unspecified.
 */ 
 
+/* https://stackoverflow.com/questions/9642732/parsing-command-line-arguments-in-c 
+*/
 #define test "placeholder"
 #define NORM "\x1B[37m"
 #define NORM2 "\033[0m"
