@@ -1,5 +1,5 @@
 /*
- system specs
+ goggles -- view system and hardware specs
  ------------
  A system report program to grab detailed information
  on each piece of hardware and Advanced PC insights.
@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/utsname.h> //geting kernel and host name info
+#include <argp.h>
 #include "termcolors.h"  
 #ifdef __FreeBSD__
 	#include <time.h>
@@ -35,6 +36,43 @@ If you do not initialize a variable, its value is unspecified.
 #define BLINK "\033[5m"
 #define ITALIC "\033[3m"
 #define UNDERLINE "\033[4m"
+
+/* ARG PARSING */
+int full; /* The -f flag */
+const char *argp_program_version = "goggles 1.0";
+const char *argp_program_bug_address = "<tmeralus@protonmail.com>";
+
+static char doc[] = "View system and hardware specs.";
+static char args_doc[] = "[FILENAME]...";
+
+static struct argp_option options[] = { 
+    { "--full", '-f', 0, 0, "Get full system specs"},
+    { "--help", '-h', 0, 0, "Print this text and exit"},
+    { 0 } 
+};
+
+struct arguments {
+    enum { CHARACTER_MODE, WORD_MODE, FULL_DETAILS } mode;
+    bool isCaseInsensitive;
+};
+
+static error_t parse_opt(int key, char *arg, struct argp_state *state) {
+    struct arguments *arguments = state->input;
+    switch (key) {
+    case '-f': arguments->mode = FULL_DETAILS; break;
+    case 'h': arguments->mode = WORD_MODE; break;
+    case '-v': arguments->isCaseInsensitive = true; break;
+    case 'i': arguments->isCaseInsensitive = true; break;
+    case ARGP_KEY_ARG: return 0;
+    default: return ARGP_ERR_UNKNOWN;
+    }   
+    return 0;
+}
+
+static struct argp argp = { options, parse_opt, args_doc, doc, 0, 0, 0 };
+
+
+/* END ARG PARSING */
 
 struct utsname kername; //set variable for system name structure 
 
@@ -199,7 +237,7 @@ void more_specs(){
 */
 
 int main(int argc, char *argv[]) { 
-	printf("Speccy \n");
+	printf("goggles \n");
 	printf("-------\n");
 	core_specs();
 	//printf("%s  %s", core_specs(), more_specs() );
