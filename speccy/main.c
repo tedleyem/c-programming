@@ -9,7 +9,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include "termcolors.h"  
+#include "termcolors.h"
 #ifdef __FreeBSD__
 	#include <time.h>
 #elif __linux__
@@ -20,19 +20,8 @@
     // int logical_cores = system("sysctl -n hw.logicalcpu_max");
     // int physical_cores = system("sysctl -n hw.physicalcpu_max");
 #endif
-/*
-If an object that has automatic storage duration is not initialized explicitly, its value is indeterminate.
-If you do not initialize a variable, its value is unspecified.
-*/
-// iint uname = 0;
-int uptime = 0;
-int whoami = 0;
-int hostname = 0;
-int checkmemory = 0;
-int cpu_info = 0;
-int logical_cores = 0;
-int physical_cores = 0;
 
+/* Colors
 #define test "placeholder"
 #define NORM "\x1B[37m"
 #define NORM2 "\033[0m"
@@ -40,19 +29,20 @@ int physical_cores = 0;
 #define BLINK "\033[5m"
 #define ITALIC "\033[3m"
 #define UNDERLINE "\033[4m"
+*/
 
 // USER INFO
 void getUserInfo() {
-	// https://man7.org/linux/man-pages/man2/gethostname.2.html 
-	// test popen 
+	// https://man7.org/linux/man-pages/man2/gethostname.2.html
+	// test popen
 	// https://man7.org/linux/man-pages/man3/popen.3.html
-	char Infosplat = system("whoami \n"); 
+	char Infosplat = system("whoami \n");
 	char getUser = system("hostname \n");
 	printf("user@hostname \n");
-} 
+}
 
-// OS INFO 
-void getOsInfo() { 
+// OS INFO
+void getOsInfo() {
 	printf("OS: %s \n", test);
 }
 // HOST INFO
@@ -73,10 +63,10 @@ void getUptime() {
 // PACKAGES
 void getPackages() {
 	//char Upstill = system("dpkg --list | wc -l \n");
-	printf("Packages: %s \n", test);	
+	printf("Packages: %s \n", test);
 }
 // SHELL
-void getShell() { 
+void getShell() {
 	printf("Shell: %s \n", test);
 }
 // RESOLUTION
@@ -85,27 +75,27 @@ void getResolution() {
 	printf("Resolution: %s \n", test);
 }
 // DE
-void getDeskEnv() { 
+void getDeskEnv() {
 	printf("DE: %s \n", test);
 }
 // WM
-void getWindowEnv() { 
+void getWindowEnv() {
 	printf("WM: %s \n", test);
 }
 // WM THEME
-void getWindowTheme() { 
+void getWindowTheme() {
 	printf("WM Theme: %s \n", test);
 }
-// THEMES 
+// THEMES
 void getTheme() {
 	printf("Theme: %s \n", test);
 }
 // ICONS
-void getIcons() { 
+void getIcons() {
 	printf("Icons: %s \n", test);
 }
 // TERMINAL
-void getTerminal() { 
+void getTerminal() {
 	printf("Terminal: %s \n", test);
 }
 // CPU
@@ -113,7 +103,7 @@ void getCPU() {
 	printf("CPU: %s \n", test);
 }
 // RAM/MEMORY
-void getRam() { 
+void getRam() {
 	printf("Memory: %s \n", test);
 }
 // <-- add flag for --more or --full to get advanced details >
@@ -121,7 +111,7 @@ void getRam() {
 void getSerialNumber() {
 	printf("Motherboard: %s \n", test);
 }
-// Model Number 
+// Model Number
 void getModelNumber() {
 	printf("Motherboard: %s \n", test);
 }
@@ -154,7 +144,7 @@ void getNetwork() {
 	printf("NIC Card: %s \n", test);
 }
 
-void core_specs(){ 
+void core_specs(){
 	getOsInfo();
 	getHostInfo();
 	getKernel();
@@ -189,7 +179,7 @@ void more_specs(){
 /*  TODO: add flags for the following
  --c save to clipboard
  --s save as text,pdf, or rtx
- --h for help 
+ --h for help
  --f full pc details
 
  // add logic to hide the bottom half of these print statements
@@ -199,7 +189,7 @@ void more_specs(){
   printf("Report bugs: https://github.com/tedleyem/speccy/issues\n");
 */
 
-int main(int argc, char *argv[]) { 
+int main(int argc, char *argv[]) {
 	printf("Speccy \n");
 	printf("-------\n");
 	core_specs();
