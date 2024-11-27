@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/utsname.h> //geting kernel and host name info
-#include <argp.h> 
+/* #include <argp.h> */
 
 /* Colors */
 #define NORM "\x1B[37m"
@@ -59,9 +59,9 @@
 
 /* added placeholder test varaible */
 #define test "placeholder"
-
-/* ARG PARSING */
-int full; /* The -f flag */
+ 
+/* ARG PARSING 
+int full;    
 const char *argp_program_version = "goggles 1.0";
 const char *argp_program_bug_address = "<tmeralus@protonmail.com>";
 
