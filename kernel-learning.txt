@@ -1,0 +1,53 @@
+# Kernel Modules 
+# where are kernel header modules found on a linux system. 
+
+Kernel moduels are 
+* runtime loadable modules 
+* built against the kernel source version
+* Modules built have the *.ko extension
+* Can be built static inside a kernel images 
+
+module_init() - driver initialization entry point. 
+          
+module_init(x) 
+@x: These functions will be run at kernel boot time or module insertion. 
+
+
+module_exit() - will wrap the driver clean-up code with cleanup_module() when used with 
+rmmod when the driver is a module. If the driver is statically compiled into the kernel, 
+module_exit() has no effect. There can only be one per module. 
+
+In most cases loadable module do not need custom initcall levels. 
+There are still some valid cases where a driver may be needed early if built in, 
+and does not matter when built as a loadable module. 
+
+"Like bus snooping debug drivers" -- not sure what that means. 
+
+# MODULE INFORMATION 
+#def MODULE_AUTHOR - Developer of module 
+#def MODULE_LICENSE - Proprietary or open source 
+#def MODULE_DESCRIPTION - Module functionality 
+
+
+---
+How do you run kernel modules? 
+* create a makefile 
+* Build the kernel module using the following 
+make -C <path of kernel source> M=${pwd}
+MAKEFILES 
+in your makefile
+you would use "obj-m" to define a module outside of the kernel source.
+you would use "obj-y" allows you to make the kernel as a module binary inside the kernel source. 
+
+# Makefile for this module 
+obj-m:= hello_module.o
+
+
+Types of Modules 
+* In-Source Tree: Module present in the Linux Kernel Source Code 
+* Out-of-Tree: Modules not present in the Linux Kernel Source Code 
+
+All modules start out as "out-of-tree" deveopments, that 
+can be compiled using the context of a source-tree.
+Once a module gets accepted to be included, it becomes an in-tree module. 
+

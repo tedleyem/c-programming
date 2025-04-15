@@ -1,0 +1,377 @@
+C standard library
+https://en.wikipedia.org/wiki/C_standard_library#:~:text=The%20C%20standard%20library%20provides,several%20other%20operating%20system%20services.
+
+-- run a program
+cc hello.c
+###############
+## CHAPTER 1 ##
+###############
+-- DEFINE ---
+A #define line defines a symbolic name or symbolic constant to be a particular string of characters:
+#define name replacement list
+
+
+--- VARIABLES ---
+    int fahr, celsius;
+    int lower, upper, step;
+
+Definitions: assign a variable a value
+ex: int x = 1;
+
+Declarations: assign a variable NO value
+ex: int x;
+
+YOU CANT REDEFINE A VARIABLE WITH THE SAME NAME
+if
+int x = 3;
+
+then you cant create a new
+int x = 4;
+
+HOWEVER, YOU CAN ASSIGN A VARIABLE WITHOUT A TYPE
+IN THE SAME PROGRAM
+ex: x = 4;
+
+
+The type int means that the variables listed are integers; by contrast with float, which
+means floating point, i.e., numbers that may have a fractional part.
+
+###############
+## CHAPTER 2 ##
+###############
+--- DATA TYPES ---
+char - character - a single byte
+short - short integer
+long - long integer
+double - double-precision floating point
+arrays - black of memory containing members of the same sizse
+structures - block of memory containing members of different types
+unions -
+pointers -
+functions - a group of statements that together perform a task.
+printf - a general purpose output formatting function defined in the ANSI standard, not a part of the C language
+scanf - function for reading inputs (like the 'read' command in bash)
+
+NOTE: you cannot assign a large value to a small variable
+char c = 65576; DOES NOT WORK
+char values can be assigned between 0 and 255
+
+
+---FLOAT POINTS
+writing floating-point constants with explicit decimal points even when they have integral values
+emphasizes their floating-point nature for human readers. (ex 32.0 instead of 32)
+STATIC TYPE VALUES
+ex: x = 0;
+
+FLOAT TYPE VALUES
+ex: x = 1.0
+
+float       | 4 bytes  | 6 decimal places
+double      | 8 bytes  | 15 decimal places
+long double | 10 bytes | 19 decimal places
+
+
+6d    - print as decimal integer, at least 6 characters wide
+%f    - print as floating point
+%6f   - print as floating point, at least 6 characters wide
+%.2f  - print as floating point, 2 characters after decimal point
+%6.2f - print as floating point, at least 6 wide and 2 after decimal point
+%o    - print  as octal
+%x    - print as hexadecimal
+%c    - print character
+%s    - print string
+%%    - print self
+
+
+--Input and Output
+getchar: reads the next input characterfrom a text stream and returns that as its value.
+putchar: prints a character each time its called.
+
+c = getchar();
+putchar(c);
+
+
+
+-- IFDEF (#ifdef)
+the #ifdef directive allows for conditional compilation.
+The preprocessor determines if the provided macro exists before
+including the subsequent code in the compilation process.
+
+example: 
+
+if (n > 0)
+    if (a > b)
+    z = a;
+else
+    z = b;
+
+example in linux: 
+
+
+-- stdlib
+The C stdlib library system() function is used to execute an operating system command
+#include <stdlib.h>
+
+-- system commands from stdlib
+The syntax for the system function in the C Language is:
+$ int system(const char *string);
+
+-- VOID vs STATIC VOID
+
+When should static functions be used?
+
+static functions are normally used to avoid name conflicts in bigger project. 
+If you inspect Linux kernel source, example in drivers/net you would see many static void functions in there. 
+Drivers are developed by different vendors and the usage of static functions ensure that they can name the functions the way they want without worrying of name conflicts with other non-related driver developers
+
+VOID UNDERSTANDING
+void is a VARIABLE TYPE which means a variable has no type.
+It is used in 3 different places.
+
+- Functions that don't return a value (they return void)
+- Functions that take no arguments (void arguments)
+- Pointers to void (set to be cast latter by programmer)
+
+Examples:
+void * ptr =
+void func ()
+
+--- BITWISE ARITHMEITC ---
+
+-- Simple Math --
+* Addition
+    * A = A + B
+    * A += B
+* Subtraction
+    * A = A - B
+    * A -= B
+* Division and Multiplication can be used as well
+
+-- Logic Operators --
+* And (Getting bits = returns 1 if both bits are set)
+    * A & B
+    * 1 & 1 = 1
+    * 1 & 0 = 0
+* Or (Setting bits: = returns 1 if either of the bits are set but not if neither are set)
+    * A | B
+    * 1 | 0 = 1
+* XOR (Flipping bits: only return 1 if either 1 is 1 but not both. must be exclusive)
+    * A ^ B
+    * 1 ^ 0 = 1
+    * 1 ^ 1 = 1
+
+--- STRUCTURE ---
+structures - block of memory containing members of different types
+
+struct Person {
+    int age;
+    int height;
+}
+
+struct Person TED;
+    TED.age = 100;
+    TED.height = 200;
+
+-- ADVANCED EXAMPLE
+
+
+struct my_struct {
+    int arr[64]; // you can make an array inside a structure
+};
+
+struct my_struct mine[100];
+    mine1[].arr[4] = 10;
+
+/* this makes 100 my_struct varialbes that will have
+64 itegers in them */
+
+--- CONDITIONAL STATEMENTS ---
+-- IF/THEN/ELSE ---
+
+Boolean Logic
+
+&& |- called the AND operator. If both operands are non-zero, condition is TRUE
+
+|| |- called OR operator. If any of the two operands is non-zero, the condition becomes TRUE.
+
+! |- called NOT operator. used to reverse logical state of its operand. If condition is true, then logical NOT operator will make it FALSE
+
+== |- checks if the two values are numerically the same. If yes, the expression is TRUE
+
+!= |- checks if the two values are NOT numerically the same. If not, the expression is true.
+
+
+###############
+## CHAPTER 3 ##
+###############
+--- SWITCH STATEMENT ---
+switch - a statement that compares a statement against a list of possibilities
+and runs code based on the vlaue (becomes a jump table)
+
+Can be used if you have a huge chunk of code to pick through.
+Probably a good use case for creating tests.
+
+example:
+
+switch (expression)
+{
+    case value;
+        // code
+    case value2;
+        // more code
+    case value3;
+        // a bit more code
+    default;
+        // code
+        break;
+
+    return 0;
+}
+
+
+
+###############
+## CHAPTER 4 ##
+###############
+-- FUNCTIONS --
+* functions should start with return types
+like void, or static
+* functions reduce repeated code in a program (saves you space in embedded C where there may be limited space)
+* functions should do ONE things, sometimes TWO, NEVER THREE
+* funcions keep code readable and understandable
+
+
+--- REGARDING 'main(int argc, char *argv[])' ARGUMENTS
+:examples can be found in final/loop.c
+
+The arguments argc and argv of main is used as a way to send arguments to a program, the possibly most familiar way is to use the good ol' terminal where a user could type cat file. Here the word cat is a program that takes a file and outputs it to standard output (stdout).
+
+The program receives the number of arguments in argc and the vector of arguments in argv, in the above the argument count would be two (The program name counts as the first argument) and the argument vector would contain [cat,file,null]. While the last element being a null-pointer.
+
+Commonly, you would write it like this:
+
+```
+int  // Specifies that type of variable the function returns.
+     // main() must return an integer
+main ( int argc, char **argv ) {
+     // code
+     return 0; // Indicates that everything went well.
+}
+```
+
+If your program does not require any arguments, it is equally valid to write a main-function in the following fashion:
+
+```
+int main() {
+  // code
+  return 0; // Zero indicates success, while any
+  // Non-Zero value indicates a failure/error
+}
+```
+
+In the early versions of the C language, there was no int before main as this was implied. Today, this is considered to be an error.
+
+
+-- MORE FUNCTIONS ---
+functions can be found in a header file
+if you plan on defining all the functions that are going to be used in a program. That way they can be called without throwing errors.
+
+header.c
+
+void funcion_a(void);
+void function_b(void);
+
+
+###############
+## CHAPTER 5 ##
+###############
+--- POINTERS ---
+
+struct Person *pME = &me;
+|__________|   |      |______> add the "&" sign to call back the pointer
+|              |__> add a "*" to address it as a pointer. the (p) is optional
+|
+|____> define type of pointer
+
+-- PASS BY VALUE
+passing a variable or structure through a function 
+to do something and return the changed variable. 
+
+
+-- PASS BY REFERENCE 
+You cannot pass a structure by value, instead 
+you would have to pass a reference. 
+
+EXAMPLE: 
+
+```
+Address | Value 
+
+0x1000  | 0x00024 #age      <--\
+                                struct Person me;
+0x1004  | 0x00040 #height   <--/
+0x1004  | 0x00008           <-- struct Person* #pointer 
+```
+If you have a list of addresses and wanted to 
+make a pointer to those addresses you can make a 
+pointer to the address to call it back and forth. 
+
+
+Defining pointers 
+    struct Person *pME = &me;
+
+When making a pointer you must do the following: 
+* define the type of the pointer
+* adding a p  to the front of your pointer 
+    like *pME is good practice for pointers 
+
+# Embedded Systems 
+-- systems that have the software and hardware to perform
+electronic tasks. All in one systems that don't require
+any external components to run. --microwaves 
+
+# Microcontroller 
+small and self contained systems. All hardware and software 
+are contained. 
+
+-- cheap 
+-- task focused 
+-- self contained memory 
+-- resource constrained 
+
+# Microprocessor 
+processors to handle more functionality.
+
+-- expensive 
+-- general tasks 
+-- depends on exeternal components (motherboard, ram, storage)
+-- resource abundant 
+
+-- Linux vs Embedded --
+Linux OS's come with glibc and libc 
+which are libraries with a boat load of 
+resources and api's. 
+
+Embedded land does not have any of those libraries 
+or functions. Those have to be built by YOU. 
+
+What do embedded developers need to know about 
+the chips they are working with. 
+
+* The constraints 
+  -- amount of RAM, ROM, FLASH 
+  -- clock speed 
+* The memory map (datasheet)
+  -- where does boot start, whwere does the bootloader live
+  -- where is RAM? 
+  -- Where are peripherals? 
+  -- periperals (serial, analog digital converters, etc)
+    * UART,SPI,I2C, TIMERS,etc 
+* Toolchain 
+    * Is there a cross compiler for an AVR or SPI toolchain? 
+    * Is the development community active? 
+
+The Arduino boards are essentially sheilds
+that have two chips on them. One is used to flash the other. 
+
+
