@@ -21,8 +21,7 @@ struct utsname kername; //set variable for system name structure
 void print_help() {
     printf("Usage: goggles [option]... \n");
     printf("--c\tSave to clipboard\n");
-    printf("--f\tSave as text, pdf, or rtx\n");
-    printf("--f\tSave as text, pdf, or rtx\n");
+    printf("--f\tPrint Full Details\n");
     printf("--h\tDisplay this help message\n"); 
 }
 
@@ -30,19 +29,21 @@ void print_help() {
 void save_to_clipboard() {
     printf("Saving to clipboard...\n");
     // save content to the clipboard (platform-specific)
-}
-
-void save_as_filetype(char *format) {
-    if (strcmp(format, "text") == 0) {
-        printf("Saving as text...\n");
-    } else if (strcmp(format, "pdf") == 0) {
-        printf("Saving as PDF...\n");
-    } else if (strcmp(format, "rtx") == 0) {
-        printf("Saving as RTF...\n");
-    } else {
-        printf("Invalid format. Supported formats are: text, pdf, rtx.\n");
-    }
-}
+} 
+// print fancy banner
+void print_banner() {
+	printf("---------------------\n");
+	printf("- Hardware details - \n");
+	printf("---------------------\n");
+    // save content to the clipboard (platform-specific)
+} 
+// print FULL fancy banner
+void print_full_banner() {
+	printf("---------------------\n");
+	printf("- FULL PC Specs & Hardware details - \n");
+	printf("---------------------\n");
+    // save content to the clipboard (platform-specific)
+} 
 
 // PC INSIGHTS 
 struct utsname kername; //set variable for system name structure
@@ -169,9 +170,7 @@ void get_network() {
 }
 
 void core_specs() {  
-	printf("---------------------\n");
-	printf("- Hardware details - \n");
-	printf("---------------------\n");
+	print_banner(); 
 	get_os_info(); 
 	get_serial_number();
 	get_model_number();
@@ -187,9 +186,7 @@ void core_specs() {
 }
 
 void full_specs() {
-	printf("-------------------\n");
-	printf("- System details - \n");
-	printf("-------------------\n");
+	print_full_banner();
 	get_user_info();
 	get_os_info();
 	get_host_info();
@@ -221,8 +218,6 @@ int main(int argc, char *argv[]) {
 			if (strcmp(argv[i], "--c") == 0) {
 				save_to_clipboard();
 			} else if (strcmp(argv[i], "--f") == 0) {
-				save_as_filetype(argv[i]);
-			} else if (strcmp(argv[i], "--full") == 0) {
 				full_specs(argv[i]);
 			} else if (strcmp(argv[i], "--h") == 0) {
 				print_help();
@@ -239,11 +234,7 @@ int main(int argc, char *argv[]) {
 }
 
 /*  TODO: add flags for the following
- --c save to clipboard
- --s save as text,pdf, or rtx
- --h for help
- --f full pc details
-
+ 
  // add logic to hide the bottom half of these print statements
  // <-- add flag for --more or --full to get advanced details >
 
