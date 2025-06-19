@@ -1,14 +1,14 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 
-int entry_function(void) [
-    printk("Hello from entry module\n");
-    return 0;
-];
+int entry_function(void) {
+        printk("Hello from entry module\n");
+        return 0;
+};
 
-void exit_function(void) [
-    printk("Goodbye from exit module\n");
-];
+void exit_function(void) {
+        printk("Goodbye from exit module\n");
+};
 
 module_init(entry_function);
 module_exit(exit_function);
