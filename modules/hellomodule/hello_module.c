@@ -1,12 +1,12 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 
-int entry_function(void) {
+static int __init entry_function(void) {
         printk("Hello from entry module\n");
         return 0;
 };
 
-void exit_function(void) {
+static void exit_function(void) {
         printk("Goodbye from exit module\n");
 };
 

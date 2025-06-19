@@ -1,0 +1,159 @@
+
+### CHARACTER DRIVERS 
+what are character drivers: Character drivers are basically a bytes stream of drivers being handled. File operations, console drivers, embedded systems like UART and more can be considered as character drivers. 
+
+- Character transactions from kernel to userspace and vice-versa 
+- Entry are found in /dev 
+- Typical character drivers are serial drivers and console drivers. 
+- Character devices are identified by a 'c'.
+
+-- Finding character drivers 
+$ ls -l /dev/ 
+
+
+# QUICK BUILD STEPS 
+### RELOAD MODULE
+- sudo make -C /usr/src/linux-headers-6.12.30-amd64/ M=~/projects/c-programming/hellomodule/
+- grep hello_module /proc/modules 
+- grep hello_module /proc/kallsyms 
+- 
+
+###
+# CHARACTER DRIVER NUMBERS 
+###
+--- Major number and Minor number
+- Numbers exist in pairs 
+- Can be found for each type of devices under /dev.
+- The major numbers are used by the kernel to identify the correct driver whenever the device is accessed. 
+- Minor number is device dependent and is internally handled within the driver 
+
+Ex: sudo mknod /dev/testdriver c 92 1 
+
+Command: sudo mknod 
+driver entry: /dev/testdriver 
+Type of driver: c 
+Major number: 92 
+minor number: 1 
+
+To find the differences in Character devices and Block devices 
+you can type in:
+$ cat /proc/devics 
+
+
+ 
+tmeralus@mercury:~/projects/c-programming/linux-6.15/drivers(main)$ cat /proc/devices
+Character devices:
+  1 mem
+  4 /dev/vc/0
+  4 tty
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  6 lp
+  7 vcs
+ 10 misc
+ 13 input
+ 21 sg
+ 29 fb
+ 99 ppdev
+116 alsa
+128 ptm
+136 pts
+153 spi
+180 usb
+189 usb_device
+202 cpu/msr
+216 rfcomm
+226 drm
+240 mei
+241 hidraw
+242 aux
+243 cec
+244 lirc
+245 watchdog
+246 bsg
+247 ptp
+248 pps
+249 rtc
+250 cxl
+251 dma_heap
+252 dax
+253 tpm
+254 gpiochip
+261 accel
+
+Block devices:
+  8 sd
+  9 md
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+253 device-mapper
+254 mdp
+259 blkext
+
+If you wanted to creat a driver with a device number you can check the list 
+and find a number thats not being used. 
+
+ID 200 is not being used so we can use that. 
+
+$ sudo mknod /dev/my_test_driver c 200 5
+
+this command creates an ENTRY file NOT a driver 
+you can check for that if you look for /dev/my_test_driver 
+
+###
+# REGISTER A DEVICE DRIVER 
+###
+
+- Registering a driver 
+    register_chrdev(major number, Device_name, &file_operations)
+- requires the major number
+- - if the major number is not known, use 0 to dynamically find the major number. 
+- reuqires the name of the driver 
+- requires file operation as the parameter 
+
+###
+# FILE OPERATIONS 
+###
+
+you can find how other developers created file operations by searching through the linux kernel 
+source tree. 
+
+ex: grep -r file_operations * /projects/c-programming/linux-6.15/drivers
+ex: cat /projects/c-programming/linux-6.15/drivers/scsi/st.c 
+
+# fun command -- cat scsi/st.c | tail -n 820 | head -40  
+static const struct file_operations st_fops =
+{
+        .owner =        THIS_MODULE,
+        .read =         st_read,
+        .write =        st_write,
+        .unlocked_ioctl = st_ioctl,
+#ifdef CONFIG_COMPAT
+        .compat_ioctl = st_compat_ioctl,
+#endif
+        .open =         st_open,
+        .flush =        st_flush,
+        .release =      st_release,
+        .llseek =       noop_llseek,
+};
+
+# BUILD CHARACTER DRIVER 
+in the make file add this line 
+
+$ obj-m:= character_driver.o
+
