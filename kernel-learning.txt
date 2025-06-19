@@ -7,6 +7,13 @@ Kernel moduels are
 * Modules built have the *.ko extension
 * Can be built static inside a kernel images 
 
+# QUICK BUILD STEPS 
+### RELOAD MODULE
+- sudo make -C /usr/src/linux-headers-6.12.30-amd64/ M=~/projects/c-programming/hellomodule/
+- grep hello_module /proc/modules 
+- grep hello_module /proc/kallsyms 
+- 
+
 module_init() - driver initialization entry point. 
           
 module_init(x) 
@@ -23,11 +30,10 @@ and does not matter when built as a loadable module.
 
 "Like bus snooping debug drivers" -- not sure what that means. 
 
-# MODULE INFORMATION 
+### MODULE INFORMATION 
 #def MODULE_AUTHOR - Developer of module 
 #def MODULE_LICENSE - Proprietary or open source 
 #def MODULE_DESCRIPTION - Module functionality 
-
 
 ---
 How do you run kernel modules? 
@@ -51,3 +57,182 @@ All modules start out as "out-of-tree" deveopments, that
 can be compiled using the context of a source-tree.
 Once a module gets accepted to be included, it becomes an in-tree module. 
 
+### Build module 
+ # The makefile has the following 
+ obj-m:= hello_module.o
+
+ This creates the hello_module.o file wihch is the module 
+ 
+ To BUILD THE KERNEL MODULE 
+ make -C <path of kernel source> M=${pwd}
+ sudo make -C /usr/src/linux-headers-6.12.30-amd64/ M=/home/tmeralus/projects/c-programming/hellomodule
+
+
+# Commands 
+- insmod - used to load the module (sudo)
+- lsmod - used to get ther information of active modules in kernel (sudo)
+- rmmod - used to remove the module from kernel (sudo)
+- dmesg - read kernel log messages 
+-- dmesg -C - clear kernel log
+
+INSMOD - userspace module to insert module from userspace to kernelspace 
+LSMOD - only reads active modules, does not need sudo permissions 
+RMMOD - removing module in kernel space from user space 
+
+-- Example of insmod and ls mod 
+```
+tmeralus@mercury:~/projects/c-programming/hellomodule(main)$ sudo !!
+sudo insmod hello_module.ko 
+tmeralus@mercury:~/projects/c-programming/hellomodule(main)$ lsmod
+Module                  Size  Used by
+hello_module           12288  0
+uinput                 20480  1
+
+```
+
+### COMMANDS printk
+PRINTK writes directly to the kernel log bugger 
+so that it gets picked up in dmesg command 
+
+
+- The Console driver reads the ring buffer continuosly 
+- Console log level uses defaul console log level as reference
+- Default log level can be seen in /proc/sys/kernel/printk 
+- printk messages above console log level are printed.
+- printk works in critical area
+- printk writes directly to memcpy 
+- info about log levels can be found under includes/linux/kerne_levels.h 
+and include/linux/printk.k respectively. 
+
+### CHANGING PRINTK MESSAGES FOR DEBUGGING 
+Example: 
+ cat /proc/sys/kernel/printk
+
+Output: 
+tmeralus@mercury:~/projects/c-programming/hellomodule(main)$ cat /proc/sys/kernel/printk
+4       4       1       7
+
+
+To find out what those messages mean you can find out more information can find the printk messages using this command: 
+
+cat /usr/src/linux-headers-6.12.30-common/include/linux/kern_levels.h 
+
+
+### CHECK STATUS OF MODULE 
+active modules are loaded under /sys/modules, they can be known from user space. 
+
+Module Stages: 
+- Coming: while module is being loaded
+- Live: when modules is live in memory 
+- Going: while modules is unloading
+
+### TAINTED KERNEL MODULES 
+tainted kernel module documentation can be found in a few places.
+new kernel: /linux-6.15/Documentation/translations/zh_CN/admin-guide/tainted-kernels.rst 
+
+live kernel: /usr/src/linux-headers-6.12.30-common/include/linux/panic.h 
+
+
+### kallsym
+kernel all symbols that kernel is utilizing 
+What is important is finding out what funcions of the hello module are being used here and when they are being picked up. 
+
+tmeralus@mercury:~/projects/c-programming/hellomodule(main)$ grep hello_module /proc/kallsyms 
+0000000000000000 d __UNIQUE_ID___addressable_cleanup_module454  [hello_module]
+0000000000000000 r _note_19     [hello_module]
+0000000000000000 r _note_18     [hello_module]
+0000000000000000 r orc_header   [hello_module]
+0000000000000000 d __this_module        [hello_module]
+0000000000000000 d __stop_alloc_tags    [hello_module]
+0000000000000000 t cleanup_module       [hello_module]
+0000000000000000 t entry_function       [hello_module]
+0000000000000000 t init_module  [hello_module]
+0000000000000000 d __start_alloc_tags   [hello_module]
+0000000000000000 t __pfx_init_module    [hello_module]
+0000000000000000 t __pfx_cleanup_module [hello_module]
+0000000000000000 t __pfx_entry_function [hello_module]
+0000000000000000 t exit_function        [hello_module]
+0000000000000000 t __pfx_exit_function  [hello_module]
+
+### USE OF __init 
+- Without the use of init, the entry function in the hello module will be present in kernel memory. 
+- Entry function will occupy a few bytes of memory
+- In resource constrained environemnt, this could cause a bottleneck 
+- Once the initialization function is successfully returned, the function can be removed from the memory using __init keyboards.
+- This feature is widely used in moder day drivers, where, after probing of the drivers, the init functions are removed from memory. 
+
+
+using an example like:
+
+static int __init entry_function(void) {
+        printk("Hello from entry module\n");
+        return 0;
+};
+
+will load and unload the function into memory and prevent it from staying in memory. 
+
+### Static Functions 
+## this static declaration makes sure that this function only works in this module to prevent its name or usage to conflict with other modules and function naming conventions. 
+
+static int entry_function(void) {
+        printk("Hello from entry module\n");
+        return 0;
+};
+
+### Export Functions 
+you can use an EXPORT_SYMBOL to export a function 
+outside of a module if needed. 
+
+### RELOAD MODULE
+- sudo make -C /usr/src/linux-headers-6.12.30-amd64/ M=~/projects/c-programming/hellomodule/
+- grep hello_module /proc/modules 
+- grep hello_module /proc/kallsyms 
+- 
+
+tmeralus@mercury:~/projects/c-programming/hellomodule(main)$ grep hello_module /proc/kallsyms 
+0000000000000000 d __UNIQUE_ID___addressable_cleanup_module454  [hello_module]
+0000000000000000 r _note_19     [hello_module]
+0000000000000000 r _note_18     [hello_module]
+0000000000000000 r orc_header   [hello_module]
+0000000000000000 d __this_module        [hello_module]
+0000000000000000 d __stop_alloc_tags    [hello_module]
+0000000000000000 t cleanup_module       [hello_module]
+0000000000000000 t entry_function       [hello_module]
+0000000000000000 t init_module  [hello_module]      <--- This initializes it 
+0000000000000000 d __start_alloc_tags   [hello_module]
+0000000000000000 t __pfx_init_module    [hello_module]
+0000000000000000 t __pfx_cleanup_module [hello_module] < -- This shows its being cleaned from memory 
+0000000000000000 t __pfx_entry_function [hello_module]
+0000000000000000 t exit_function        [hello_module]
+0000000000000000 t __pfx_exit_function  [hello_module]
+
+YOU CAN FIND EXAMPES IN THE LINUX KERNEL DRIVERS DIR 
+
+$ cd linux-6.15/drivers/
+$ grep -nir "__init" *
+
+EXAMPLE:
+''
+watchdog/m54xx_wdt.c:195:static
+
+
+static int __init m54xx_wdt_init(void)
+{
+        if (!request_mem_region(MCF_GPT_GCIR0, 4, "Coldfire M54xx Watchdog")) {
+                pr_warn("I/O region busy\n");
+                return -EBUSY;
+        }
+        pr_info("driver is loaded\n");
+
+        return misc_register(&m54xx_wdt_miscdev);
+}
+
+static void __exit m54xx_wdt_exit(void)
+{
+        misc_deregister(&m54xx_wdt_miscdev);
+        release_mem_region(MCF_GPT_GCIR0, 4);
+}
+
+module_init(m54xx_wdt_init);
+module_exit(m54xx_wdt_exit);
+''
