@@ -1,38 +1,52 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/printk.h>
-#include <linux/fs.h>
+#include <linux/fs.h> // location for character drivers used for file operations
 
-static int my_char_file_open(struct inode *char_test_inode, struct file *my_char_file){
-       printk(KERN_NOTICE "My character_driver file has opened\n");
-	return 0;
-}
-
-static int my_char_file_close(struct inode *char_test_inode, struct file *my_char_file){
-       printk(KERN_NOTICE "My character_driver file has closed\n");
-	return 0;
-}
-
-ssize_t my_char_file_read (struct file *char_test_inode, char __user *buffer, size_t length, loff_t *my_char_offset){
+// Read file operation
+ssize_t char_file_read (struct file *char_test_inode, char __user *buffer, size_t, loff_t *char_offset){
        printk(KERN_NOTICE "My character_driver file is being read\n");
 	return 0;
 };
-
-static const struct file_operations my_char_file_operations = {
+// Write to file
+static ssize_t char_file_write(struct file *char_test_inode, const char __user *buffer, size_t count, loff_t *char_file){
+       printk(KERN_NOTICE "Writing data with character driver \n");
+	return 0;
+}
+// Open file operation 
+static int char_file_open(struct inode *char_test_inode, struct file *char_file){
+	// run a message when this driver opens a file.
+       printk(KERN_NOTICE "My character_driver file has opened\n");
+	return 0;
+}
+// Release/Close file operation
+static int char_file_release(struct inode *char_test_inode, struct file *char_file){
+       printk(KERN_NOTICE "My character_driver file has closed\n");
+	   kfree(char_test_inode);
+	return 0;
+}
+// this creates an object char_file_operations
+static const struct file_operations char_file_operations = {
+	// defining functions within this object
 	.owner = THIS_MODULE,
-	.open = my_char_file_open,
-	.release = my_char_file_close,
-	.read = my_char_file_read,
+	.read = char_file_read,
+	.write = char_file_write,
+	.open = char_file_open,
+	.release = char_file_release,
 };
 
 static int __init entry_function(void) {
-	printk(KERN_NOTICE "Hello world from init module\n");
-	register_chrdev(200, "Test Character Driver", &my_char_file_operations);	
+	printk(KERN_NOTICE "Hello world from init module (character driver) \n");
+	/* Register character driver using the prebuilt register_chrdev found in linux kernel.
+	* To learn more about where its being used and how remember to go to 
+	* https://elixir.bootlin.com/linux/v6.15.2/A/ident/register_chrdev
+	*/
+	register_chrdev(200, "test_char_driver", &char_file_operations);	
 	return 0;
 }
 
 static void __exit exit_function(void) {
-	printk("Good bye from exit module\n");
+	printk("Good bye from exit module (character driver) \n");
 	unregister_chrdev(200, "Test Character Driver");	
 }
 
