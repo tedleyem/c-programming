@@ -2,12 +2,12 @@
 #include <linux/kernel.h>
 
 static int __init entry_function(void) {
-        printk("Hello from entry module\n");
+        printk("Hello from hello entry module\n");
         return 0;
 };
 
 static void exit_function(void) {
-        printk("Goodbye from exit module\n");
+        printk("Goodbye from hello exit module\n");
 };
 
 module_init(entry_function);

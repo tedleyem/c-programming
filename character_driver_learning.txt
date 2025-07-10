@@ -110,6 +110,7 @@ and find a number thats not being used.
 
 ID 200 is not being used so we can use that. 
 
+## CREATE TEST DRIVER CHARACTER DRIVER FILE 
 $ sudo mknod /dev/my_test_driver c 200 5
 
 this command creates an ENTRY file NOT a driver 
@@ -136,7 +137,8 @@ source tree.
 ex: grep -r file_operations * /projects/c-programming/linux-6.15/drivers
 ex: cat /projects/c-programming/linux-6.15/drivers/scsi/st.c 
 
-# fun command -- cat scsi/st.c | tail -n 820 | head -40  
+# fun command -- cat ~/projects/c-programming/linux-6.15/drivers/scsi/st.c | tail -n 820 | head -40  
+# fun command -- vi ~/projects/c-programming/linux-6.15/drivers/scsi/st.c
 static const struct file_operations st_fops =
 {
         .owner =        THIS_MODULE,

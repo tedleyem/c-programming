@@ -26,7 +26,7 @@ static int char_file_release(struct inode *char_test_inode, struct file *char_fi
 	return 0;
 }
 // this creates an object char_file_operations
-static const struct file_operations char_file_operations = {
+static const struct file_operations char_file_operations = {     
 	// defining functions within this object
 	.owner = THIS_MODULE,
 	.read = char_file_read,
@@ -38,7 +38,7 @@ static const struct file_operations char_file_operations = {
 static int __init entry_function(void) {
 	printk(KERN_NOTICE "Hello world from init module (character driver) \n");
 	/* Register character driver using the prebuilt register_chrdev found in linux kernel.
-	* To learn more about where its being used and how remember to go to 
+	* To learn more about where its being used and how use it to go to 
 	* https://elixir.bootlin.com/linux/v6.15.2/A/ident/register_chrdev
 	*/
 	register_chrdev(200, "test_char_driver", &char_file_operations);	
