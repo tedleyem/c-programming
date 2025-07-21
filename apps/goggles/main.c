@@ -23,6 +23,7 @@ void print_help() {
     printf("--c\tSave to clipboard\n");
     printf("--f\tPrint Full Details\n");
     printf("--h\tDisplay this help message\n"); 
+    printf("--speccy\tDisplay Linux System Information\n"); 
 }
 
 // clipboard function
