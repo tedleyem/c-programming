@@ -1,6 +1,7 @@
 # c-programming
 A repo to document my journey with learning C and reading [C Programming Language, 2nd Edition](docs/pdf/the-C-programming-language-2nd-edition.pdf)
 
+# Tested with linux kernel 6.12.30
 
 ## LEARNING AND OBJECTIVES 
 
@@ -33,14 +34,13 @@ applications, drivers, and other tools to use with your kernel.
 
 ## PROJECT #1 Goggles
 a speccy inspired app to grab system hardware information
-and copy to a clipboard  
+and copy to a clipboard  [*IN-PROGRESS*](https://github.com/tedleyem/c-programming/tree/main/apps/goggles)
 
 ## PROJECT #2 Kernel Module 
-create and build kernel module 
+create and build a kernel module [*DONE*](https://github.com/tedleyem/kernel-hello-module)
 
 ## PROJECT #3 RAM DISK DRIVER - reddit idea
 Write a simple RAM disk driver for linux. Basically, kmalloc a buffer, hook read and write up to the buffer so bytes written into the device file wind up in the buffer, and reading from the device file read out of the buffer. Maybe implement a dummy ioctl or two to enable fdisk and parted to work on it without complaining. I'm leaving out a ton of details obviously, but those are the details you're wanting to learn. This was exactly the project that got me into linux/unix device drivers. If you want a job doing that, you need to be working for a hardware company that needs such drivers. In my case, I was working at Compaq/HP, and we had a build process for SCO Unixware/Openserver drivers (1990s timeframe, before linux ate their lunch) and Openserver did not have a loopback device, and we needed to produce floppy disk images, and the process was to use an actual floppy disk in an actual floppy drive, which was slow and error prone. I wanted to learn about drivers, so I wrote a little driver that had a 1024 byte buffer that I could read and write to, and a lightbulb went off, and I thought, "what if I made the buffer 1.44M instead of 1024 bytes? It could act like a very reliable, very fast floppy disk!" So, I tried it, and initially it failed, needing some ioctl() I hadn't implemented. Dummied that up, and it worked. Cut the build time down from more than an hour to a few minutes, and no longer had to worry about wearing out floppy disks. 
-
 
 
 # Kernel Driver implementer’s API guide
