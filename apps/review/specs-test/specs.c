@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#ifdef __linux__
-#include <unistd.h>
-#include <sys/utsname.h>
-#elif __APPLE__
-#include <sys/sysctl.h>
-#endif
 
 void get_system_info() {
     printf("System Information:\n");

@@ -9,8 +9,14 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/utsname.h> //geting kernel and host name info
 #include <string.h>
+
+#ifdef __linux__
+#include <unistd.h>
+#include <sys/utsname.h>
+#elif __APPLE__
+#include <sys/sysctl.h>
+#endif
 
 /* added placeholder test varaible */
 #define test "placeholder"
@@ -67,7 +73,7 @@ void get_host_info() {
 	 FILE *fptr;
 	// Open a file in read mode
 	fptr = fopen("/etc/hostname", "r");
-	printf("Host: %s \n", test);
+	printf("Host: %s \n", fptr);
 	fclose(fptr);
 }
 // KERNEL VERSION
@@ -119,7 +125,11 @@ void get_terminal() {
 } 
 // CPU
 void get_cpu() {
-	printf("CPU: %s \n", test);
+	int cpspec;
+	cpspec = system("lscpu | grep 'Model name' | cut -d ':' -f2");
+
+    printf("CPU: %s \n", cpspec);
+	//	printf("CPU: %s \n", test);
 }
 // CPU DETAILS
 void get_cpu_details() {
@@ -171,8 +181,9 @@ void get_network() {
 }
 
 void core_specs() {  
-	print_banner(); 
-	get_os_info(); 
+	print_banner();
+	get_host_info();
+	get_os_info();
 	get_serial_number();
 	get_model_number();
 	get_motherboard();
@@ -207,7 +218,11 @@ void full_specs() {
 	get_ram();
 	core_specs();
 }
- 
+
+void core_test() { 
+	get_host_info(); 
+	get_cpu(); 
+}
 
 int main(int argc, char *argv[]) {
 	// printf(" Goggles \n");
@@ -228,8 +243,8 @@ int main(int argc, char *argv[]) {
 			}
 		}
 	}
-	core_specs();
-	//printf("\n use --h for help option \n");
+	//core_specs();
+	printf("\n use --h for help option \n");
 	  
 	return 0;
 }
