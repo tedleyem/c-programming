@@ -7,21 +7,27 @@ KFILE="linux-$KERNEL_VERSION.tar.xz"
 KDIR="linux-$KERNEL_VERSION"
 TARGETDIR="linux-kernel"
 
-echo "→ Downloading Linux kernel $KERNEL_VERSION ..."
-wget -c --show-progress "$CURL"
+echo "→ Checking for existing $KFILE ..."
+if [ -f "$KFILE" ]; then
+    echo "→ $KFILE already exists, skipping download."
+else
+    echo "→ Downloading Linux kernel $KERNEL_VERSION ..."
+    wget -c --show-progress "$CURL"
+fi
 
 echo "→ Preparing linux-kernel directory ..."
-mkdir -p linux-kernel
+mkdir -p "$TARGETDIR"
 
 echo "→ Extracting $KFILE ..."
-tar -xf "$KFILE" #--strip-components=1 -C linux-kernel
+tar -xf "$KFILE"
 
 echo "→ Syncing files into $TARGETDIR ..."
-mkdir -p "$TARGETDIR"
 rsync -av --delete-after "$KDIR"/ "$TARGETDIR"/
 
 echo "→ Cleaning up ..."
-rm -f "$KFILE"
+#echo "→ Removing $KFILE ..."
+#rm -f "$KFILE"
+echo "→ Removing $KDIR ..."
 rm -rf "$KDIR"
 
 echo "Linux $KERNEL_VERSION synced into $TARGETDIR/"
