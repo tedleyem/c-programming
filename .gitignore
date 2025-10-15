@@ -53,3 +53,4 @@ dkms.conf
 
 # Linux kernel testing
 linux-*/
+linux-*.tar.xz
