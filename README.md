@@ -2,6 +2,20 @@
 A repo to document my journey with learning C and reading [C Programming Language, 2nd Edition](docs/pdf/the-C-programming-language-2nd-edition.pdf)
 
 # Tested with linux kernel 6.12.30
+To fetch Linux 6.12.30 into a directory called linux-6.12.30, run:
+rsync -avz --info=progress2 rsync://rsync.kernel.org/pub/linux/kernel/v6.x/linux-6.12.30.tar.xz . && \
+tar -xf linux-6.12.30.tar.xz && \
+rsync -av --delete linux-6.12.30/ existing/linux-6.12.30/
+
+
+Single line option to fetch Linux 6.12.30
+$ rsync -avz --progress rsync://rsync.kernel.org/pub/linux/kernel/v6.x/linux-6.12.30.tar.xz .
+
+Then extract it:
+$ tar -xf linux-6.12.30.tar.xz
+
+Or unpack it all together 
+$ rsync -avz --progress rsync://rsync.kernel.org/pub/linux/kernel/v6.x/linux-6.12.30.tar.xz - | tar -xJf -
 
 ## LEARNING AND OBJECTIVES 
 
