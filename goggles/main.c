@@ -10,17 +10,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/utsname.h>
 
 #ifdef __linux__
-#include <unistd.h>
-#include <sys/utsname.h>
-#elif __APPLE__
-#include <sys/sysctl.h>
+	#include <unistd.h>
+#elif defined(__APPLE__)
+	#include <sys/sysctl.h>
 #endif
 
 /* added placeholder test varaible */
 #define test "placeholder"
  
+// PC INSIGHTS
 struct utsname kername; //set variable for system name structure
 
 // arg parsing functions 
@@ -51,9 +52,6 @@ void print_full_banner() {
 	printf("---------------------\n");
     // save content to the clipboard (platform-specific)
 } 
-
-// PC INSIGHTS 
-struct utsname kername; //set variable for system name structure
 
 // USER INFO
 void get_user_info() {
@@ -196,7 +194,7 @@ void core_specs() {
 	get_peripherals();
 	get_network();
 }
-
+// The warning -Wdeprecated-non-prototype indicates that a function is being called with arguments, but its declaration does not specify the types or number of those arguments (i.e., it lacks a prototype). This is a feature from older C standards (like K&R C) that is now deprecated and removed in C23.
 void full_specs() {
 	print_full_banner();
 	get_user_info();
