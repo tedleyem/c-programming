@@ -25,13 +25,3 @@ Inspired by [Speccy](https://www.ccleaner.com/speccy) and [neofetch](https://git
 * Storage
 * Optical
 * Audio
-
-
-
- 
-
-### More: # [[Dependencies](https://github.com/tedleyem/goggles/wiki/Dependencies)]
-
-# [[Installation](https://github.com/tedleyem/goggles/wiki/Installation)] 
-
-# [[Wiki](https://github.com/tedleyem/goggles/wiki)]
