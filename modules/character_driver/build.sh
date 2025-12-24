@@ -1,7 +1,7 @@
 #!/bin/bash
 KERNEL_VERSION=$(uname -r)
 KERNEL_HEADERS="linux-headers-$KERNEL_VERSION"
-MODULE_DIR="~/projects/c-programming/modules/hellomodule/"
+MODULE_DIR="~/projects/c-programming/modules/character_driver/"
 
 # remove exisitng kernel file 
 rm -f *.ko *.o.cmd *.Modules* *.module *..module *.mod *.symvers *.order
