@@ -1,4 +1,5 @@
 #!/bin/bash
+#KERNEL_VERSION="6.12.30"
 KERNEL_VERSION=$(uname -r)
 KERNEL_HEADERS="linux-headers-$KERNEL_VERSION"
 MODULE_DIR="."
